@@ -2,13 +2,9 @@ package MetodosDeMultiplicacion;
 
 public class MultiplicacionAmericana {
     public static void main(String[] args){
-        int [] arr1 = {9,5,3,0,1};
-        int [] arr2 = {9,3,5,6,0};
-        int []resultado = new int[arr1.length+ arr2.length];
-        int k = resultado.length-1;
-        int acarreo = 0;
-        int i= arr2.length-1;
-        int j= arr1.length-1;
+        int [] arr1 = {9,9,9,9,9,9,9};
+        int [] arr2 = {9,9,9,9,9,9};
+
 
         System.out.println("Arreglo multiplicando");
         for(int l: arr1)
@@ -20,9 +16,30 @@ public class MultiplicacionAmericana {
         System.out.println();
 
         multiplicarAmericano(arr1, arr2);
-        //multiplicacionAmericanoRecursivo(arr1, arr2,resultado, acarreo, i,j,k);
-        //imprimirResultado(resultado);
+        //multiplicarArreglosAmericano(arr1, arr2);
     }
+
+    private static int[] multiplicarArreglosAmericano(int[] arr1, int[] arr2) {
+        int []resultado = new int[arr1.length+ arr2.length];
+
+        if(arr1.length > arr2.length){
+            int [] arrAux1 = arr1;
+            arr1 = arr2;
+            arr2 = arrAux1;
+        }
+
+        int acarreo = 0;
+        int i= arr2.length-1;
+        int j= arr1.length-1;
+        int k = resultado.length-1;
+
+
+        multiplicacionAmericanoRecursivo(arr1, arr2, resultado, acarreo, i, j, k);
+        imprimirResultado(resultado);
+        return resultado;
+
+    }
+
 
     private static void imprimirResultado(int[] resultado) {
         System.out.println("Resultado");
@@ -37,8 +54,12 @@ public class MultiplicacionAmericana {
         int acarreo = 0;
 
         System.out.print("\n");
-            //System.out.print(arr2[i]);
 
+        if(arr1.length > arr2.length){
+            int [] arrAux1 = arr1;
+            arr1 = arr2;
+            arr2 = arrAux1;
+        }
         //Recorre el arreglo multiplicador desde la última posición
         for (int i = arr2.length -1; i>=0; i--){
 
@@ -62,8 +83,10 @@ public class MultiplicacionAmericana {
                     acarreo = 0;
                 }
                 k--;
+                imprimirResultado(resultado);
             }
             resultado[k]=acarreo;
+            acarreo=0;
         }
         imprimirResultado(resultado);
     }
