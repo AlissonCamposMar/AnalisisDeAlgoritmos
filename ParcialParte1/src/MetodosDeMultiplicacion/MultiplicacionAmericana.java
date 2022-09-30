@@ -83,7 +83,6 @@ public class MultiplicacionAmericana {
                     acarreo = 0;
                 }
                 k--;
-                imprimirResultado(resultado);
             }
             resultado[k]=acarreo;
             acarreo=0;
