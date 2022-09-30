@@ -2,13 +2,9 @@ package MetodosDeMultiplicacion;
 
 public class MultiplicacionInglesa {
     public static void main(String[] args){
-        int [] arr1 = {1,5,3,0,1};
-        int [] arr2 = {1,3,5,6,0};
-        int []resultado = new int[arr1.length+ arr2.length];
-        int acarreo = 0;
-        int i= 0;
-        int j= arr1.length-1;
-        int k = arr2.length + i;
+        int [] arr1 = {9,9,9,9,9,9,9};
+        int [] arr2 = {9,9,9,9,9,9};
+
 
         System.out.println("Arreglo multiplicando");
         for(int l: arr1)
@@ -19,10 +15,29 @@ public class MultiplicacionInglesa {
             System.out.print(h + " ");
         System.out.println();
 
-        //multiplicarIngles(arr1, arr2);
-        multiplicacionInglesRecursivo(arr1, arr2,resultado, acarreo, i,j,k);
-        imprimirResultado(resultado);
+        //multiplicarArreglosIngles(arr1, arr2);
+        multiplicarIngles(arr1, arr2);
+        //
     }
+
+ public static int[] multiplicarArreglosIngles(int[] arr1, int[] arr2){
+     int []resultado = new int[arr1.length+ arr2.length];
+
+     if(arr1.length > arr2.length){
+         int [] arrAux1 = arr1;
+         arr1 = arr2;
+         arr2 = arrAux1;
+     }
+
+     int acarreo = 0;
+     int i= 0;
+     int j= arr1.length-1;
+     int k = arr2.length - 1 + i;
+
+     multiplicacionInglesRecursivo(arr1, arr2, resultado, acarreo, i, j, k);
+     imprimirResultado(resultado);
+     return resultado;
+ }
 
     private static void imprimirResultado(int[] resultado) {
         System.out.println("Resultado");
@@ -31,7 +46,7 @@ public class MultiplicacionInglesa {
         }
     }
 
-    private static void multiplicarIngles(int[] arr1, int[] arr2) {
+    private static int[] multiplicarIngles(int[] arr1, int[] arr2) {
 
         int[] resultado = new int[arr1.length+ arr2.length];
         int k = 0;
@@ -39,10 +54,14 @@ public class MultiplicacionInglesa {
 
         System.out.print("\n");
 
-
+        if(arr1.length > arr2.length){
+            int [] arrAux1 = arr1;
+            arr1 = arr2;
+            arr2 = arrAux1;
+        }
         //Recorre el arreglo multiplicador desde la primera posición
         for (int i = 0; i<arr2.length; i++){
-            k  = arr2.length + i;
+            k  = arr2.length - 1 + i;
             for (int j = arr1.length-1; j>=0; j--){
 
                 resultado[k] += arr1[j] * arr2[i] + acarreo;
@@ -66,10 +85,8 @@ public class MultiplicacionInglesa {
             }
 
         }
-        System.out.println("Pruebas de lectura de los arreglos desde la ultima posición hasta la primera");
-        for (int i = 0; i< resultado.length; i++){
-            System.out.print(resultado[i] + " ");
-        }
+        imprimirResultado(resultado);
+        return resultado;
     }
 
     private static int[] multiplicacionInglesRecursivo(int[] arr1, int[] arr2, int[] resultado, int acarreo, int i, int j, int k) {
@@ -122,7 +139,7 @@ public class MultiplicacionInglesa {
             }
             i++;
             j = arr1.length - 1;
-            k  = arr2.length + i;
+            k  = arr2.length - 1 + i;
             multiplicacionInglesRecursivo(arr1,arr2,resultado,acarreo,i,j,k);
 
         } else {
