@@ -2,8 +2,8 @@ package MetodosDeMultiplicacion;
 
 public class MultiplicacionAmericana {
     public static void main(String[] args){
-        int [] arr1 = {1,5,3,0,1};
-        int [] arr2 = {1,3,5,6,0};
+        int [] arr1 = {9,5,3,0,1};
+        int [] arr2 = {9,3,5,6,0};
         int []resultado = new int[arr1.length+ arr2.length];
         int k = resultado.length-1;
         int acarreo = 0;
@@ -63,6 +63,7 @@ public class MultiplicacionAmericana {
                 }
                 k--;
             }
+            resultado[k]=acarreo;
         }
         imprimirResultado(resultado);
     }
