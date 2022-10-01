@@ -29,7 +29,10 @@ public class MultiplicacionInglesa {
 
     }
 
- public static int[] multiplicarArreglosIngles(int[] arr1, int[] arr2){
+    //Este método evita que en la ejecución se desborde
+    //Si el valor que hay en el arreglo 1 es mayor al valor del arreglo 2 entonces se intercambian
+    //Es utilizado en el método recursivo
+    public static int[] multiplicarArreglosIngles(int[] arr1, int[] arr2){
      int []resultado = new int[arr1.length+ arr2.length];
 
      if(arr1.length > arr2.length){
@@ -64,6 +67,7 @@ public class MultiplicacionInglesa {
         //Recorre el arreglo multiplicador desde la primera posición
         for (int i = 0; i<arr2.length; i++){
             k  = arr2.length - 1 + i;
+
             for (int j = arr1.length-1; j>=0; j--){
 
                 resultado[k] += arr1[j] * arr2[i] + acarreo;
