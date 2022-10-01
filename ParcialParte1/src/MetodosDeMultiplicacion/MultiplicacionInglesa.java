@@ -1,5 +1,8 @@
 package MetodosDeMultiplicacion;
-
+/**
+ * Alisson Campos M 1005087645
+ * Johan Andrey Ortiz 1094880380
+ */
 public class MultiplicacionInglesa {
     public static void main(String[] args){
         int [] arr1 = {9,9,9,9,9,9,9};
