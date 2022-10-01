@@ -2,6 +2,8 @@ package MetodosDeMultiplicacion;
 /**
  * Alisson Campos M 1005087645
  * Johan Andrey Ortiz 1094880380
+ *
+ * Aquí se encuentran los métodos de arreglos, recursivo y de ArrayList
  */
 public class MultiplicacionInglesa {
     public static void main(String[] args){
