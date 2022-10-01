@@ -20,9 +20,9 @@ public class MultiplicacionInglesa {
             System.out.print(h + " ");
         System.out.println();
 
-        //multiplicarArreglosIngles(arr1, arr2);
-        multiplicarIngles(arr1, arr2);
-        //
+        multiplicarArreglosIngles(arr1, arr2);
+        //multiplicarIngles(arr1, arr2);
+
     }
 
  public static int[] multiplicarArreglosIngles(int[] arr1, int[] arr2){
@@ -114,7 +114,7 @@ public class MultiplicacionInglesa {
                     resultado[k] = resultado[k]%10;
                     resultado[k - 1] += acarreo;
                 }
-                acarreo = 0;
+                //acarreo = 0;
             }
             //resultado[k]=acarreo;
             //System.out.println(arr1[j] + "," + arr2[i]);

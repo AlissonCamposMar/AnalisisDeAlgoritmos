@@ -1,4 +1,7 @@
 package MetodosDeMultiplicacion;
+
+import java.util.ArrayList;
+
 /**
  * Alisson Campos M 1005087645
  * Johan Andrey Ortiz 1094880380
@@ -20,7 +23,8 @@ public class MultiplicacionAmericana {
             System.out.print(h + " ");
         System.out.println();
 
-        multiplicarAmericano(arr1, arr2);
+        //multiplicarAmericano(arr1, arr2);
+        multiplicarAmericanoArrayList(arr1, arr2);
         //multiplicarArreglosAmericano(arr1, arr2);
     }
 
@@ -34,8 +38,8 @@ public class MultiplicacionAmericana {
         }
 
         int acarreo = 0;
-        int i= arr2.length-1;
-        int j= arr1.length-1;
+        int i = arr2.length-1;
+        int j = arr1.length-1;
         int k = resultado.length-1;
 
 
@@ -45,15 +49,7 @@ public class MultiplicacionAmericana {
 
     }
 
-
-    private static void imprimirResultado(int[] resultado) {
-        System.out.println("Resultado");
-        for (int i = 0; i< resultado.length; i++){
-            System.out.print(resultado[i] + " ");
-        }
-    }
-
-    private static void multiplicarAmericano(int[] arr1, int[] arr2) {
+    private static int[] multiplicarAmericano(int[] arr1, int[] arr2) {
         int []resultado = new int[arr1.length+ arr2.length];
         int k;
         int acarreo = 0;
@@ -93,6 +89,7 @@ public class MultiplicacionAmericana {
             acarreo=0;
         }
         imprimirResultado(resultado);
+        return resultado;
     }
 
     public static  int[] multiplicacionAmericanoRecursivo(int[] arr1, int[] arr2, int[] resultado, int acarreo, int i, int j, int k){
@@ -146,9 +143,67 @@ public class MultiplicacionAmericana {
         }
 
         return resultado;
-
     }
 
+    public static ArrayList<Integer> multiplicarAmericanoArrayList(int[] arr1, int[] arr2){
+        ArrayList<Integer>resultado = new ArrayList<>();
+        int k;
+        int acarreo = 0;
+        int longitud = arr1.length + arr2.length;
+
+        for(int i = 0; i< longitud; i++){
+            resultado.add(0);
+        }
+
+        System.out.print("\n");
+
+        if(arr1.length > arr2.length){
+            int [] arrAux1 = arr1;
+            arr1 = arr2;
+            arr2 = arrAux1;
+        }
+
+        //Recorre el arreglo multiplicador desde la última posición
+        System.out.println("tamaño del arraylist: "+resultado.size());
+        for (int i = arr2.length -1; i>=0; i--){
+
+            //Verifica a qué tan lejos está del borde derecho de resultado
+            k  = resultado.size() - (arr2.length - i);
+            //Recorre el arreglo multiplicando desde la última posición
+            for (int j = arr1.length - 1; j >= 0; j--) {
+
+                //Realiza la multiplicación y suma sobre el resultado anterior
+                resultado.set(k, arr1[j] * arr2[i] + acarreo + resultado.get(k));
+
+                if(resultado.get(k)>=10){
+                    acarreo = resultado.get(k)/10;
+                    resultado.set(k, resultado.get(k)%10);
+                } else {
+                    acarreo = 0;
+                }
+                k--;
+            }
+            resultado.set(k, acarreo);
+            //resultado[k]=acarreo;
+            acarreo=0;
+        }
+        imprimirResultadoArrayList(resultado);
+        return resultado;
+    }
+
+    private static void imprimirResultadoArrayList(ArrayList<Integer> resultado) {
+        System.out.println("Resultado");
+        for (int i = 0; i< resultado.size(); i++){
+            System.out.print(resultado.get(i) + " ");
+        }
+    }
+
+    private static void imprimirResultado(int[] resultado) {
+        System.out.println("Resultado");
+        for (int i = 0; i< resultado.length; i++){
+            System.out.print(resultado[i] + " ");
+        }
+    }
 
 
 }
