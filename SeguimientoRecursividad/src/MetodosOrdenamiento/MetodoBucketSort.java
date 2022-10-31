@@ -1,11 +1,7 @@
 package MetodosOrdenamiento;
 
 import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Vector;
-
-import static java.util.Objects.hash;
 
 public class MetodoBucketSort <T extends Number & Comparable<T>>{
     // Driver code
@@ -36,13 +32,12 @@ public class MetodoBucketSort <T extends Number & Comparable<T>>{
         for(int i= 0; i<arreglo.length;i++){
             arreglo[i] = (float) (Math.random()* arreglo.length);
         }
-        BucketSort(arreglo, arreglo.length);
+        imprimirNumOrdenados(BucketSort(arreglo, arreglo.length));
     }
 
-    private static void BucketSort(float[] arreglo, int tamArr) {
+    private static float[] BucketSort(float[] arreglo, int tamArr) {
         if(tamArr <= 0)
-            return;
-
+            return arreglo;
         @SuppressWarnings("unchecked")
         Vector<Float>[] buckets = new Vector[tamArr];
 
@@ -67,6 +62,7 @@ public class MetodoBucketSort <T extends Number & Comparable<T>>{
         }
 
         imprimirNumOrdenados(arreglo);
+        return arreglo;
     }
 
     private static void imprimirNumOrdenados(float[] arreglo) {
