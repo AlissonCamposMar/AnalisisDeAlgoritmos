@@ -7,7 +7,7 @@ public class MetodoPorSeleccion {
         int numElementos;
         long tiempoInicioEjecucion = System.nanoTime();
 
-        numElementos = 300000;
+        numElementos = 410000;
         //System.out.println("Hello world!");
 
         System.out.println("\nTamanio del arreglo es: " + numElementos + "\n");
@@ -38,7 +38,6 @@ public class MetodoPorSeleccion {
             k = i;
             for( j = i+1; j < arreglo.length; j++) {
                 if (arreglo [j] < menor ) {
-
                     menor = arreglo [j];
                     k = j;
                 }
@@ -54,14 +53,6 @@ public class MetodoPorSeleccion {
         System.out.println("\nArreglo ordenado de forma creciente\n");
         for(int i=0;i< arreglo.length;i++){
             System.out.print(" - " + arreglo[i]);
-        }
-
-        /**
-         * Ordenado de forma decreciente
-         */
-        System.out.println("\nArreglo ordenado de forma decreciente\n");
-        for( int j = arreglo.length-1 ; j >= 0 ; j--) {
-            System.out.print(" - " + arreglo[j]);
         }
     }
 }

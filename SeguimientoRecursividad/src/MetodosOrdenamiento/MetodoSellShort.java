@@ -1,14 +1,13 @@
 package MetodosOrdenamiento;
 
 public class MetodoSellShort {
-
     public static void main(String[] args) {
 
         int arreglo[];
         int numElementos;
         long tiempoInicioEjecucion = System.nanoTime();
 
-        numElementos = 25000000;
+        numElementos = 410000;
         //System.out.println("Hello world!");
 
         System.out.println("\nTamanio del arreglo es: " + numElementos + "\n");
@@ -55,14 +54,6 @@ public class MetodoSellShort {
         System.out.println("\nArreglo ordenado de forma creciente\n");
         for(int i=0;i< arreglo.length;i++){
             System.out.print(" - " + arreglo[i]);
-        }
-
-        /**
-         * Ordenado de forma decreciente
-         */
-        System.out.println("\nArreglo ordenado de forma decreciente\n");
-        for( int j = arreglo.length-1 ; j >= 0 ; j--) {
-            System.out.print(" - " + arreglo[j]);
         }
     }
 }

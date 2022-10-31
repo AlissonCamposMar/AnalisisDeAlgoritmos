@@ -8,7 +8,7 @@ public class MetodoPorInsercion {
         int numElementos;
         long tiempoInicioEjecucion = System.nanoTime();
 
-        numElementos = 1000000;
+        numElementos = 410000;
         //System.out.println("Hello world!");
 
         System.out.println("\nTamanio del arreglo es: " + numElementos + "\n");
@@ -32,7 +32,8 @@ public class MetodoPorInsercion {
     }
 
     public static void insercion( int arreglo[] ) {
-        int i, llave;
+        int i;
+        int llave;
         for ( int j = 1 ; j < arreglo.length ; j++ ) {
             llave = arreglo[ j ];
             i = j - 1;
@@ -50,14 +51,6 @@ public class MetodoPorInsercion {
         System.out.println("\nArreglo ordenado de forma creciente\n");
         for(int i=0;i< arreglo.length;i++){
             System.out.print(" - " + arreglo[i]);
-        }
-
-        /**
-         * Ordenado de forma decreciente
-         */
-        System.out.println("\nArreglo ordenado de forma decreciente\n");
-        for( int j = arreglo.length-1 ; j >= 0 ; j--) {
-            System.out.print(" - " + arreglo[j]);
         }
     }
 }

@@ -7,9 +7,7 @@ public class MetodoBurbujaDobleDireccion {
         int numElementos;
         long tiempoInicioEjecucion = System.nanoTime();
 
-        numElementos = 150000;
-        //numElementos = (int) (Math.random()*150000);
-        //System.out.println("Hello world!");
+        numElementos = 410000;
 
         System.out.println("\nTamanio del arreglo es: " + numElementos + "\n");
 
@@ -61,14 +59,6 @@ public class MetodoBurbujaDobleDireccion {
         System.out.println("\nArreglo ordenado de forma creciente\n");
         for(int i=0;i< arreglo.length;i++){
             System.out.print(" - " + arreglo[i]);
-        }
-
-        /**
-         * Ordenado de forma decreciente
-         */
-        System.out.println("\nArreglo ordenado de forma decreciente\n");
-        for( int j = arreglo.length-1 ; j >= 0 ; j--) {
-            System.out.print(" - " + arreglo[j]);
         }
     }
 }

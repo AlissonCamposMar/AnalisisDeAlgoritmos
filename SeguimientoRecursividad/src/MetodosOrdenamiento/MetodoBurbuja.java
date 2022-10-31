@@ -7,7 +7,7 @@ public class MetodoBurbuja {
         int numElementos;
         long tiempoInicioEjecucion = System.nanoTime();
 
-        numElementos = 350000;
+        numElementos = 410000;
         //System.out.println("Hello world!");
 
         System.out.println("\nTamanio del arreglo es: " + numElementos + "\n");
@@ -35,7 +35,6 @@ public class MetodoBurbuja {
      * @param arreglo
      */
     public static void burbuja(int arreglo[]) {
-
         int aux;
         /**
          * Ordenado de forma creciente
@@ -46,11 +45,9 @@ public class MetodoBurbuja {
                     aux = arreglo[ i ];
                     arreglo[i] = arreglo[i + 1];
                     arreglo[i+1] = aux;
-
                 }
             }
         }
-
         imprimirNumOrdenados(arreglo);
     }
 
@@ -61,13 +58,6 @@ public class MetodoBurbuja {
             System.out.print(" - " + arreglo[k]);
         }
 
-        /**
-         * Ordenado de forma decreciente
-         */
-        System.out.println("\nArreglo ordenado de forma decreciente\n");
-        for( int j = arreglo.length-1 ; j >= 0 ; j--) {
-            System.out.print(" - " + arreglo[j]);
-        }
     }
 
 }
