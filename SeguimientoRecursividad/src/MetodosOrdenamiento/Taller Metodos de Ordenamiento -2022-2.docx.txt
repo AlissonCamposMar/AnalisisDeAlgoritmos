@@ -1,0 +1,53 @@
+﻿Universidad del Quindío
+Programa de ingeniería de sistemas y computación
+Actividad Métodos de Ordenamiento - Análisis de algoritmos
+
+
+El propósito de esta actividad es analizar y comparar el desempeño de diferentes métodos de ordenamiento, considerando el tipo y tamaño de entrada. Se solicita diligenciar las siguientes tablas y responder a las preguntas. En cada celda se debe indicar el tiempo que tarda en ordenar cada algoritmo.
+
+
+Tabla 1. Análisis de datos enteros
+Método de ordenamiento
+	Resultado - tiempo
+	1. Burbuja  O (numElementos) numElementos = 410000				454.9495292 seg
+	2. Burbuja doble dirección O (numElementos) numElementos = 410000		206.0812797 seg
+	3. Selección O(numElementos) numElementos = 410000				94.0250511 seg
+	4. Inserción O (numElementos) numElementos = 410000				23.7867607seg
+	5. Recursive Insertion Sort O (numElementos) numElementos = 11000 ************	364.9405984 seg
+	6. ShellSort O (numElementos) numElementos = 410000				1.050381 seg
+	7. BucketSort O (numElementos) numElementos = 2				NO FUNCIONAL
+	8. MergeSort O (numElementos) numElementos = 410000				1.1109549 seg
+	9. QuickSort O (numElementos) numElementos = 410000				1.0240808 seg
+	10. StoogeSort O (numElementos) numElementos = 410000				0.9482356 seg
+	11. HeapSort O (numElementos) numElementos = 12				Inestable
+	12. Bitonic Sort O (numElementos) numElementos = 12				No Funcional
+	13. Gnome Sort O (numElementos) numElementos = 410000			133.2326133 seg
+	14. Binary Insertion Sort O (         )						222.707651299 seg
+	15. Strand Sort O (numElementos) numElementos = 410000			1.172863001 seg
+	
+
+Con base en los resultados de la tabla 1, se solicita: 
+
+
+Ordenar de mayor a menor los métodos de ordenamiento de acuerdo con los resultados de la prueba.
+
+
+
+
+Método de ordenamiento
+	Resultado - tiempo
+	1. BucketSort O (numElementos) numElementos = 2				No Funcional
+	2. Bitonic Sort O (numElementos) numElementos = 12				No Funcional
+	3. HeapSort O (numElementos) numElementos = 12				Inestable
+	4. Burbuja  O (numElementos) numElementos = 410000				454.9495292 seg
+	5. Recursive Insertion Sort O (numElementos) numElementos = 11000 ************	364.9405984 seg
+	6. Binary Insertion Sort O (         )						222.707651299 seg
+	7.  Burbuja doble dirección O (numElementos) numElementos = 410000		206.0812797 seg
+	8. Gnome Sort O (numElementos) numElementos = 410000				133.2326133 seg
+	9. Selección O (numElementos) numElementos = 410000				94.0250511 seg
+	10. Inserción O (numElementos) numElementos = 410000				23.7867607seg
+	11. Strand Sort O (numElementos) numElementos = 410000			1.172863001 seg
+	12. MergeSort O (numElementos) numElementos = 410000				1.1109549 seg
+	13. ShellSort O (numElementos) numElementos = 410000				1.050381 seg
+	14. QuickSort O (numElementos) numElementos = 410000				1.0240808 seg
+	15. StoogeSort O (numElementos) numElementos = 410000				0.9482356 seg
