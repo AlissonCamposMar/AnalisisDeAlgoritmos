@@ -1,7 +1,5 @@
 package MetodosDeMultiplicacion;
 
-import java.util.ArrayList;
-
 /**
  * Alisson Campos M 1005087645
  * Johan Andrey Ortiz 1094880380
