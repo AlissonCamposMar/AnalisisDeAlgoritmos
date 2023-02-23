@@ -89,15 +89,15 @@ public class III_5EnhancedParallelBlock_PREGUNTAR {
 
         //Otra posibilidad
         IntStream.range(0, 2).parallel().forEach(idx -> {
-            int i1, j1, k1, i, j, k;
             int start = idx * size / 2;
             int end = (idx + 1) * size / 2;
-            for (i1 = start; i1 < end; i1 += bsize) {
-                for (j1 = 0; j1 < size; j1 += bsize) {
-                    for (k1 = 0; k1 < size; k1 += bsize) {
-                        for (i = i1; i < Math.min(i1 + bsize, size); i++) {
-                            for (j = j1; j < Math.min(j1 + bsize, size); j++) {
-                                for (k = k1; k < Math.min(k1 + bsize, size); k++) {
+
+            for (int i1 = start; i1 < end; i1 += bsize) {
+                for (int j1 = 0; j1 < size; j1 += bsize) {
+                    for (int k1 = 0; k1 < size; k1 += bsize) {
+                        for (int i = i1; i < Math.min(i1 + bsize, size); i++) {
+                            for (int j = j1; j < Math.min(j1 + bsize, size); j++) {
+                                for (int k = k1; k < Math.min(k1 + bsize, size); k++) {
                                     matrizA[i][j] += matrizB[i][k] * matrizC[k][j];
                                 }
                             }
