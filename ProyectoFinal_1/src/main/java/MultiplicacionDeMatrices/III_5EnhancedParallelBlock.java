@@ -77,9 +77,9 @@ public class III_5EnhancedParallelBlock {
             for (int i1 = 0; i1 < size/2; i1 += bsize)
                 for (int j1 = 0; j1 < size; j1 += bsize)
                     for (int k1 = 0; k1 < size; k1 += bsize)
-                        for (int i = i1; i < (i1 + bsize) && i < size; i++)
-                            for (int j = j1; j < (j1 + bsize) && j < size; j++)
-                                for (int k = k1; k < (k1 + bsize) && k < size; k++)
+                        for (int i = i1; i < i1 + bsize && i < size; i++)
+                            for (int j = j1; j < j1 + bsize && j < size; j++)
+                                for (int k = k1; k < k1 + bsize && k < size; k++)
                                     matrizA[i][j] += matrizB[i][k] * matrizC[k][j];
         });
 
@@ -87,9 +87,9 @@ public class III_5EnhancedParallelBlock {
             for (int i1 = size / 2; i1 < size; i1 += bsize)
                 for (int j1 = 0; j1 < size; j1 += bsize)
                     for (int k1 = 0; k1 < size; k1 += bsize)
-                        for (int i = i1; i < (i1 + bsize) && i < size; i++)
-                            for (int j = j1; j < (j1 + bsize) && j < size; j++)
-                                for (int k = k1; k < (k1 + bsize) && k < size; k++)
+                        for (int i = i1; i < i1 + bsize && i < size; i++)
+                            for (int j = j1; j < j1 + bsize && j < size; j++)
+                                for (int k = k1; k < k1 + bsize && k < size; k++)
                                     matrizA[i][j] += matrizB[i][k] * matrizC[k][j];
         });
 

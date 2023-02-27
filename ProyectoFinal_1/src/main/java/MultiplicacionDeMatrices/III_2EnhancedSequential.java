@@ -72,11 +72,11 @@ public class III_2EnhancedSequential {
         /**
          * Sirve
          */
-
+        int sum;
         //III.2 Enhanced Sequential
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                int sum = 0;
+                sum = 0;
                 for (int k = 0; k < size; k++) {
                     sum += matrizB[i][k] * matrizC[k][j];
                 }

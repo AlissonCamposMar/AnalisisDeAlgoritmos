@@ -2,6 +2,7 @@ package MultiplicacionDeMatrices;
 
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -36,7 +37,7 @@ public class III_4ParallelBlock_NO_SIRVE {
     public void metodosTraducidos(){
 
         // Tamaño de las matrices
-        int size = 2;
+        int size = 4;
 
         //Raiz cuadrada del tamaño de las matrices
         int bsize = (int) Math.sqrt(size);
@@ -48,7 +49,7 @@ public class III_4ParallelBlock_NO_SIRVE {
                 {0, 2, 3, 7}
         };
         //int[][] matrizB = llenarMatrizAleatoria(size, size);
-        //imprimirMatriz(matrizB, "B", size);
+        imprimirMatriz(matrizB, "B", size);
 
         int[][] matrizC = {
                 {7, 0, 2, 8},
@@ -56,19 +57,8 @@ public class III_4ParallelBlock_NO_SIRVE {
                 {3, 0, 8, 8},
                 {8, 9, 8, 4}
         };
-
-        int[][] matrizP = {
-                {2,3},
-                {3,4}
-        };
-        imprimirMatriz(matrizP, "P", size);
-        int[][] matrizP1 = {
-                {7,0},
-                {2,7}
-        };
-        imprimirMatriz(matrizP1, "P1", size);
         //int[][] matrizC = llenarMatrizAleatoria(size, size);
-        //imprimirMatriz(matrizC, "C", size);
+        imprimirMatriz(matrizC, "C", size);
 
         //Resultado de esta multiplicación
         /*
@@ -87,8 +77,8 @@ public class III_4ParallelBlock_NO_SIRVE {
 
         //III.4 Parallel Block
 
-        IntStream.range(0, size).parallel().forEach(i1 -> {
-            for (i1=0; i1 <size; i1 += bsize) {
+        Arrays.stream(new int[]{0}).parallel().forEach(i1 -> {
+            for (i1 = 0; i1 <size; i1 += bsize) {
                 for (int j1 = 0; j1 < size; j1 += bsize) {
                     for (int k1 = 0; k1 < size; k1 += bsize) {
                         for (int i = i1; i < i1 + bsize && i < size; i++) {
