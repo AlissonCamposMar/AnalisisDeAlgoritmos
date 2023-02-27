@@ -4,10 +4,9 @@ import org.junit.Test;
 
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
-import java.util.stream.IntStream;
 
 
-public class III_5EnhancedParallelBlock_PREGUNTAR {
+public class III_5EnhancedParallelBlock {
     public static int[][] llenarMatrizAleatoria(int filas, int columnas) {
         int[][] matriz = new int[filas][columnas];
 
@@ -72,13 +71,7 @@ public class III_5EnhancedParallelBlock_PREGUNTAR {
         //Matriz del resultado de la multiplicación
         int[][] matrizA = new int[size][size];
 
-        /**
-         * este no es la traduccion más fidedigna
-         */
-
         //III.5 Enhanced Parallel Block
-
-// Multiplicar matrices en paralelo
 
         CompletableFuture<Void> firstHalf = CompletableFuture.runAsync(() -> {
             for (int i1 = 0; i1 < size/2; i1 += bsize)
