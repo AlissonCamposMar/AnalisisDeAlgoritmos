@@ -3,7 +3,9 @@ package MultiplicacionDeMatrices;
 import org.junit.Test;
 
 import java.util.Random;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.IntStream;
+
 
 public class III_5EnhancedParallelBlock_PREGUNTAR {
     public static int[][] llenarMatrizAleatoria(int filas, int columnas) {
@@ -76,37 +78,29 @@ public class III_5EnhancedParallelBlock_PREGUNTAR {
 
         //III.5 Enhanced Parallel Block
 
-        /*IntStream.range(0, 2).parallel().forEach(idx -> {
-            int i1 = idx * size / 2;
-            for (int j1 = 0; j1 < size; j1 += bsize)
-                for (int k1 = 0; k1 < size; k1 += bsize)
-                    for (int i = i1; i < i1 + size / 2 && i < size; i++)
-                        for (int j = j1; j < j1 + bsize && j < size; j++)
-                            for (int k = k1; k < k1 + bsize && k < size; k++)
-                                matrizA[i][j] += matrizB[i][k] * matrizC[k][j];
-        });*/
+// Multiplicar matrices en paralelo
 
-
-        //Otra posibilidad
-        IntStream.range(0, 2).parallel().forEach(idx -> {
-            int start = idx * size / 2;
-            int end = (idx + 1) * size / 2;
-
-            for (int i1 = start; i1 < end; i1 += bsize) {
-                for (int j1 = 0; j1 < size; j1 += bsize) {
-                    for (int k1 = 0; k1 < size; k1 += bsize) {
-                        for (int i = i1; i < Math.min(i1 + bsize, size); i++) {
-                            for (int j = j1; j < Math.min(j1 + bsize, size); j++) {
-                                for (int k = k1; k < Math.min(k1 + bsize, size); k++) {
+        CompletableFuture<Void> firstHalf = CompletableFuture.runAsync(() -> {
+            for (int i1 = 0; i1 < size/2; i1 += bsize)
+                for (int j1 = 0; j1 < size; j1 += bsize)
+                    for (int k1 = 0; k1 < size; k1 += bsize)
+                        for (int i = i1; i < (i1 + bsize) && i < size; i++)
+                            for (int j = j1; j < (j1 + bsize) && j < size; j++)
+                                for (int k = k1; k < (k1 + bsize) && k < size; k++)
                                     matrizA[i][j] += matrizB[i][k] * matrizC[k][j];
-                                }
-                            }
-                        }
-                    }
-                }
-            }
         });
 
+        CompletableFuture<Void> secondHalf = CompletableFuture.runAsync(() -> {
+            for (int i1 = size / 2; i1 < size; i1 += bsize)
+                for (int j1 = 0; j1 < size; j1 += bsize)
+                    for (int k1 = 0; k1 < size; k1 += bsize)
+                        for (int i = i1; i < (i1 + bsize) && i < size; i++)
+                            for (int j = j1; j < (j1 + bsize) && j < size; j++)
+                                for (int k = k1; k < (k1 + bsize) && k < size; k++)
+                                    matrizA[i][j] += matrizB[i][k] * matrizC[k][j];
+        });
+
+        CompletableFuture.allOf(firstHalf, secondHalf).join();
 
         imprimirMatriz(matrizA, "A", size);
 
