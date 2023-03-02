@@ -7,7 +7,7 @@ public class Punto4 {
     public static void main(String[] args) {
 
         String matriz[][]= { { "2016", "4233", "201" },
-                { "20", "4233", "0" }};
+                { "20", "123", "0" }};
 
 
         ArrayList<String> arr= new ArrayList<>();

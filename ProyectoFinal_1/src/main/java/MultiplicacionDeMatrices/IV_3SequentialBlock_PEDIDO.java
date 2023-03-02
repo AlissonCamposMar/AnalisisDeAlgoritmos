@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import java.util.Random;
 
-public class IV_3SequentialBlock {
+public class IV_3SequentialBlock_PEDIDO {
     public static int[][] llenarMatrizAleatoria(int filas, int columnas) {
         int[][] matriz = new int[filas][columnas];
 

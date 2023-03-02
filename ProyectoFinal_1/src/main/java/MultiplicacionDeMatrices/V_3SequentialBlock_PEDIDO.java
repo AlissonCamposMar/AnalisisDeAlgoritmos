@@ -2,11 +2,9 @@ package MultiplicacionDeMatrices;
 
 import org.junit.Test;
 
-import java.util.Arrays;
 import java.util.Random;
-import java.util.stream.IntStream;
 
-public class III_4ParallelBlock_NO_SIRVE {
+public class V_3SequentialBlock_PEDIDO {
     public static int[][] llenarMatrizAleatoria(int filas, int columnas) {
         int[][] matriz = new int[filas][columnas];
 
@@ -72,26 +70,25 @@ public class III_4ParallelBlock_NO_SIRVE {
         int[][] matrizA = new int[size][size];
 
         /**
-         * No sirve, ya que solo está bien la primera fila
+         * Sirve
          */
 
-        //III.4 Parallel Block
+        //V.3 Sequential block
 
-        Arrays.stream(new int[]{0}).parallel().forEach(i1 -> {
-            for (i1 = 0; i1 <size; i1 += bsize) {
-                for (int j1 = 0; j1 < size; j1 += bsize) {
-                    for (int k1 = 0; k1 < size; k1 += bsize) {
-                        for (int i = i1; i < i1 + bsize && i < size; i++) {
-                            for (int j = j1; j < j1 + bsize && j < size; j++) {
-                                for (int k = k1; k < k1 + bsize && k < size; k++) {
-                                    matrizA[i][j] += matrizB[i][k] * matrizC[k][j];
-                                }
+        for (int i1 = 0; i1 < size; i1 += bsize) {
+            for (int j1 = 0; j1 < size; j1 += bsize) {
+                for (int k1 = 0; k1 < size; k1 += bsize) {
+                    for (int i = i1; i < i1 + bsize && i < size; i++) {
+                        for (int j = j1; j < j1 + bsize && j < size; j++) {
+                            for (int k = k1; k < k1 + bsize && k < size; k++) {
+                                matrizA[k][i] += matrizB[k][j] * matrizC[j][i];
                             }
                         }
                     }
                 }
             }
-        });
+        }
+
 
         imprimirMatriz(matrizA, "A", size);
 

@@ -3,8 +3,9 @@ package MultiplicacionDeMatrices;
 import org.junit.Test;
 
 import java.util.Random;
+import java.util.stream.IntStream;
 
-public class III_3SequentialBlock {
+public class V_4ParallelBlock_PEDIDO {
     public static int[][] llenarMatrizAleatoria(int filas, int columnas) {
         int[][] matriz = new int[filas][columnas];
 
@@ -69,25 +70,25 @@ public class III_3SequentialBlock {
         //Matriz del resultado de la multiplicación
         int[][] matrizA = new int[size][size];
 
-        /**
-         * Sirve
-         */
+        //V.4 Parallel Block
 
-        //III.3 Sequential block
-
-        for (int i1 = 0; i1 < size; i1 += bsize) {
-            for (int j1 = 0; j1 < size; j1 += bsize) {
-                for (int k1 = 0; k1 < size; k1 += bsize) {
-                    for (int i = i1; i < i1 + bsize && i < size; i++) {
-                        for (int j = j1; j < j1 + bsize && j < size; j++) {
-                            for (int k = k1; k < k1 + bsize && k < size; k++) {
-                                matrizA[i][j] += matrizB[i][k] * matrizC[k][j];
+        IntStream.range(0, 1).parallel().forEach(_i -> {
+            for (int i1 = 0; i1 < size; i1 += bsize) {
+                for (int j1 = 0; j1 < size; j1 += bsize) {
+                    for (int k1 = 0; k1 < size; k1 += bsize) {
+                        for (int i = i1; i < i1 + bsize && i < size; i++) {
+                            for (int j = j1; j < j1 + bsize && j < size; j++) {
+                                for (int k = k1; k < k1 + bsize && k < size; k++) {
+                                    matrizA[k][i] += matrizB[k][j] * matrizC[j][i];
+                                }
                             }
                         }
                     }
                 }
             }
-        }
+        });
+
+
 
         imprimirMatriz(matrizA, "A", size);
 
