@@ -6,7 +6,7 @@ import java.util.Random;
 
 //import static java.lang.Math.max;
 
-public class StrassenNaiv_PEDIDO extends  NaivStandard_PEDIDO{
+public class _9_Strassen1Naiv extends _1_NaivStandard {
 
 
     public static int[][] llenarMatrizAleatoria(int filas, int columnas) {

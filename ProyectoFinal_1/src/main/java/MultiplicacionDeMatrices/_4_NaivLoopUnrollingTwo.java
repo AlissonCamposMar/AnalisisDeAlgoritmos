@@ -4,7 +4,9 @@ import org.junit.Test;
 
 import java.util.Random;
 
-public class V_3SequentialBlock_PEDIDO {
+public class _4_NaivLoopUnrollingTwo {
+
+
     public static int[][] llenarMatrizAleatoria(int filas, int columnas) {
         int[][] matriz = new int[filas][columnas];
 
@@ -19,7 +21,7 @@ public class V_3SequentialBlock_PEDIDO {
         return matriz;
     }
 
-    public void imprimirMatriz(int[][] matriz,String letra,int size)
+    public void imprimirMatriz(double[][] matriz,String letra,int size)
     {
         // Imprimir la matriz A
         System.out.println("Matriz"+letra+": ");
@@ -32,31 +34,28 @@ public class V_3SequentialBlock_PEDIDO {
 
     }
     @Test
-    public void metodosTraducidos(){
+    public void metodosTraducidos() {
 
         // Tamaño de las matrices
         int size = 4;
 
-        //Raiz cuadrada del tamaño de las matrices
-        int bsize = (int) Math.sqrt(size);
-
-        int[][] matrizB = {
+        double[][] matrizA = {
                 {7, 3, 4, 9},
                 {4, 8, 7, 9},
                 {2, 8, 0, 5},
                 {0, 2, 3, 7}
         };
         //int[][] matrizB = llenarMatrizAleatoria(size, size);
-        imprimirMatriz(matrizB, "B", size);
+        imprimirMatriz(matrizA, "A", size);
 
-        int[][] matrizC = {
+        double[][] matrizB = {
                 {7, 0, 2, 8},
                 {0, 0, 2, 7},
                 {3, 0, 8, 8},
                 {8, 9, 8, 4}
         };
         //int[][] matrizC = llenarMatrizAleatoria(size, size);
-        imprimirMatriz(matrizC, "C", size);
+        imprimirMatriz(matrizB, "B", size);
 
         //Resultado de esta multiplicación
         /*
@@ -67,30 +66,42 @@ public class V_3SequentialBlock_PEDIDO {
          */
 
         //Matriz del resultado de la multiplicación
-        int[][] matrizA = new int[size][size];
+        double[][] matrizC = new double[size][size];
 
         /**
-         * Sirve
+         *
          */
 
-        //V.3 Sequential block
+        NaivLoopUnrollingTwo(matrizA, matrizB, matrizC, size,size,size);
 
-        for (int i1 = 0; i1 < size; i1 += bsize) {
-            for (int j1 = 0; j1 < size; j1 += bsize) {
-                for (int k1 = 0; k1 < size; k1 += bsize) {
-                    for (int i = i1; i < i1 + bsize && i < size; i++) {
-                        for (int j = j1; j < j1 + bsize && j < size; j++) {
-                            for (int k = k1; k < k1 + bsize && k < size; k++) {
-                                matrizA[k][i] += matrizB[k][j] * matrizC[j][i];
-                            }
-                        }
+        imprimirMatriz(matrizC, "C", size);
+    }
+
+    public void NaivLoopUnrollingTwo(double[][] matrizA, double[][] matrizB, double[][] matrizC, int N, int P, int M) {
+        int i, j, k;
+        double aux;
+        if (P % 2 == 0) {
+            for (i = 0; i < N; i++) {
+                for (j = 0; j < M; j++) {
+                    aux = 0.0;
+                    for (k = 0; k < P; k += 2) {
+                        aux += matrizA[i][k] * matrizB[k][j] + matrizA[i][k + 1] * matrizB[k + 1][j];
                     }
+                    matrizC[i][j] = aux;
+                }
+            }
+        } else {
+            int PP = P - 1;
+            for (i = 0; i < N; i++) {
+                for (j = 0; j < M; j++) {
+                    aux = 0.0;
+                    for (k = 0; k < PP; k += 2) {
+                        aux += matrizA[i][k] * matrizB[k][j] + matrizA[i][k + 1] * matrizB[k + 1][j];
+                    }
+                    matrizC[i][j] = aux + matrizA[i][PP] * matrizB[PP][j];
                 }
             }
         }
-
-
-        imprimirMatriz(matrizA, "A", size);
 
     }
 }

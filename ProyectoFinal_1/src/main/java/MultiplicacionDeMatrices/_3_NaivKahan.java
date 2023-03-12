@@ -4,8 +4,7 @@ import org.junit.Test;
 
 import java.util.Random;
 
-public class NaivLoopUnrollingTwo_PEDIDO {
-
+public class _3_NaivKahan {
 
     public static int[][] llenarMatrizAleatoria(int filas, int columnas) {
         int[][] matriz = new int[filas][columnas];
@@ -72,36 +71,27 @@ public class NaivLoopUnrollingTwo_PEDIDO {
          *
          */
 
-        NaivLoopUnrollingTwo(matrizA, matrizB, matrizC, size,size,size);
+        NaivKhan(matrizA, matrizB, matrizC, size,size,size);
 
         imprimirMatriz(matrizC, "C", size);
     }
 
-    public void NaivLoopUnrollingTwo(double[][] matrizA, double[][] matrizB, double[][] matrizC, int N, int P, int M) {
-        int i, j, k;
-        double aux;
-        if (P % 2 == 0) {
-            for (i = 0; i < N; i++) {
-                for (j = 0; j < M; j++) {
-                    aux = 0.0;
-                    for (k = 0; k < P; k += 2) {
-                        aux += matrizA[i][k] * matrizB[k][j] + matrizA[i][k + 1] * matrizB[k + 1][j];
-                    }
-                    matrizC[i][j] = aux;
+    public void NaivKhan(double[][] matrizA, double[][] matrizB, double[][] matrizC, int N, int P, int M) {
+        double t, sum, err;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                sum = 0.0;
+                err = 0.0;
+                for (int k = 0; k < P; k++) {
+                    err = err + matrizA[i][k] * matrizB[k][j];
+                    t = sum + err;
+                    err = (sum - t) + err;
+                    sum = t;
                 }
-            }
-        } else {
-            int PP = P - 1;
-            for (i = 0; i < N; i++) {
-                for (j = 0; j < M; j++) {
-                    aux = 0.0;
-                    for (k = 0; k < PP; k += 2) {
-                        aux += matrizA[i][k] * matrizB[k][j] + matrizA[i][k + 1] * matrizB[k + 1][j];
-                    }
-                    matrizC[i][j] = aux + matrizA[i][PP] * matrizB[PP][j];
-                }
+                matrizC[i][j] = sum;
             }
         }
-
     }
+
+
 }

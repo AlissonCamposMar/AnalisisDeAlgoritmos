@@ -4,8 +4,7 @@ import org.junit.Test;
 
 import java.util.Random;
 
-public class NaivOnArray_PEDIDO {
-
+public class _13_IV_3SequentialBlock {
     public static int[][] llenarMatrizAleatoria(int filas, int columnas) {
         int[][] matriz = new int[filas][columnas];
 
@@ -20,7 +19,7 @@ public class NaivOnArray_PEDIDO {
         return matriz;
     }
 
-    public void imprimirMatriz(double[][] matriz,String letra,int size)
+    public void imprimirMatriz(int[][] matriz,String letra,int size)
     {
         // Imprimir la matriz A
         System.out.println("Matriz"+letra+": ");
@@ -33,28 +32,31 @@ public class NaivOnArray_PEDIDO {
 
     }
     @Test
-    public void metodosTraducidos() {
+    public void metodosTraducidos(){
 
         // Tamaño de las matrices
         int size = 4;
 
-        double[][] matrizA = {
+        //Raiz cuadrada del tamaño de las matrices
+        int bsize = (int) Math.sqrt(size);
+
+        int[][] matrizB = {
                 {7, 3, 4, 9},
                 {4, 8, 7, 9},
                 {2, 8, 0, 5},
                 {0, 2, 3, 7}
         };
         //int[][] matrizB = llenarMatrizAleatoria(size, size);
-        imprimirMatriz(matrizA, "A", size);
+        imprimirMatriz(matrizB, "B", size);
 
-        double[][] matrizB = {
+        int[][] matrizC = {
                 {7, 0, 2, 8},
                 {0, 0, 2, 7},
                 {3, 0, 8, 8},
                 {8, 9, 8, 4}
         };
         //int[][] matrizC = llenarMatrizAleatoria(size, size);
-        imprimirMatriz(matrizB, "B", size);
+        imprimirMatriz(matrizC, "C", size);
 
         //Resultado de esta multiplicación
         /*
@@ -65,25 +67,29 @@ public class NaivOnArray_PEDIDO {
          */
 
         //Matriz del resultado de la multiplicación
-        double[][] matrizC = new double[size][size];
+        int[][] matrizA = new int[size][size];
 
         /**
-         *
+         * Sirve
          */
 
-        NaivOnArray(matrizA, matrizB, matrizC, size,size,size);
-
-        imprimirMatriz(matrizC, "C", size);
-    }
-
-    public void NaivOnArray(double[][] matrizA, double[][] matrizB, double[][] matrizC, int N, int P , int M){
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < M; j++) {
-                matrizC[i][j] = 0.0;
-                for (int k = 0; k < P; k++) {
-                    matrizC[i][j] += matrizA[i][k] * matrizB[k][j];
+        //IV.3 Sequential block
+        for (int i1 = 0; i1 < size; i1 += bsize) {
+            for (int j1 = 0; j1 < size; j1 += bsize) {
+                for (int k1 = 0; k1 < size; k1 += bsize) {
+                    for (int i = i1; i < i1 + bsize && i < size; i++) {
+                        for (int j = j1; j < j1 + bsize && j < size; j++) {
+                            for (int k = k1; k < k1 + bsize && k < size; k++) {
+                                matrizA[i][k] += matrizB[i][j] * matrizC[j][k];
+                            }
+                        }
+                    }
                 }
             }
         }
+
+
+        imprimirMatriz(matrizA, "A", size);
+
     }
 }

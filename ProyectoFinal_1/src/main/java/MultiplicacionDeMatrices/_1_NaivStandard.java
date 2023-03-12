@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import java.util.Random;
 
-public class NaivKahan_PEDIDO {
+public class _1_NaivStandard {
 
     public static int[][] llenarMatrizAleatoria(int filas, int columnas) {
         int[][] matriz = new int[filas][columnas];
@@ -71,27 +71,22 @@ public class NaivKahan_PEDIDO {
          *
          */
 
-        NaivKhan(matrizA, matrizB, matrizC, size,size,size);
+        NaivStandard(matrizA, matrizB, matrizC, size,size,size);
 
         imprimirMatriz(matrizC, "C", size);
     }
 
-    public void NaivKhan(double[][] matrizA, double[][] matrizB, double[][] matrizC, int N, int P, int M) {
-        double t, sum, err;
+
+    public void NaivStandard(double[][] matrizA, double[][] matrizB, double[][] matrizC, int N, int P, int M){
+        double aux;
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < M; j++) {
-                sum = 0.0;
-                err = 0.0;
+                aux = 0.0;
                 for (int k = 0; k < P; k++) {
-                    err = err + matrizA[i][k] * matrizB[k][j];
-                    t = sum + err;
-                    err = (sum - t) + err;
-                    sum = t;
+                    aux += matrizA[i][k] * matrizB[k][j];
                 }
-                matrizC[i][j] = sum;
+                matrizC[i][j] = aux;
             }
         }
     }
-
-
 }

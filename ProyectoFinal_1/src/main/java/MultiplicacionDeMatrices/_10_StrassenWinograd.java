@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import java.util.Random;
 
-public class StrassenWinograd_PEDIDO extends NaivStandard_PEDIDO{
+public class _10_StrassenWinograd extends _1_NaivStandard {
 
     public static int[][] llenarMatrizAleatoria(int filas, int columnas) {
         int[][] matriz = new int[filas][columnas];

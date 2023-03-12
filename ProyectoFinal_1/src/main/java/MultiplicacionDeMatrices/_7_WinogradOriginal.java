@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import java.util.Random;
 
-public class WinogradOriginal_PEDIDO {
+public class _7_WinogradOriginal {
 
     public static int[][] llenarMatrizAleatoria(int filas, int columnas) {
         int[][] matriz = new int[filas][columnas];
