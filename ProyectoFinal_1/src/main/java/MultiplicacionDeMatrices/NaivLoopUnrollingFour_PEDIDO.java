@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import java.util.Random;
 
-public class ERROR_NaivLoopUnrollingFour_PEDIDO {
+public class NaivLoopUnrollingFour_PEDIDO {
     public static int[][] llenarMatrizAleatoria(int filas, int columnas) {
         int[][] matriz = new int[filas][columnas];
 
@@ -75,31 +75,31 @@ public class ERROR_NaivLoopUnrollingFour_PEDIDO {
         imprimirMatriz(matrizC, "C", size);
     }
 
-    private void NaivLoopUnrollingFour(double[][] matrizA, double[][] matrizB, double[][] matrizC, int N, int P, int M) {
+    private void NaivLoopUnrollingFour(double[][] A, double[][] B, double[][] Result, int N, int P, int M) {
         int i, j, k;
         double aux;
+
         if (P % 4 == 0) {
             for (i = 0; i < N; i++) {
                 for (j = 0; j < M; j++) {
                     aux = 0.0;
                     for (k = 0; k < P; k += 4) {
-                        aux += matrizA[i][k] * matrizB[k][j] + matrizA[i][k + 1] * matrizB[k + 1][j]
-                                + matrizA[i][k + 2] * matrizB[k + 2][j] + matrizA[i][k + 3] * matrizA[k + 3][j];
+                        aux += A[i][k]*B[k][j] + A[i][k+1]*B[k+1][j] + A[i][k+2]*B[k+2][j]
+                                + A[i][k+3]*B[k+3][j];
                     }
-                    matrizC[i][j] = aux;
+                    Result[i][j] = aux;
                 }
             }
         } else if (P % 4 == 1) {
-
             int PP = P - 1;
             for (i = 0; i < N; i++) {
                 for (j = 0; j < M; j++) {
                     aux = 0.0;
                     for (k = 0; k < PP; k += 4) {
-                        aux += matrizA[i][k] * matrizB[k][j] + matrizA[i][k + 1] * matrizB[k + 1][j]
-                                + matrizA[i][k + 2] * matrizB[k + 2][j] + matrizA[i][k + 3] * matrizB[k + 3][j];
+                        aux += A[i][k]*B[k][j] + A[i][k+1]*B[k+1][j] + A[i][k+2]*B[k+2][j]
+                                + A[i][k+3]*B[k+3][j];
                     }
-                    matrizC[i][j] = aux + matrizA[i][PP] * matrizB[PP][j];
+                    Result[i][j] = aux + A[i][PP]*B[PP][j];
                 }
             }
         } else if (P % 4 == 2) {
@@ -110,10 +110,10 @@ public class ERROR_NaivLoopUnrollingFour_PEDIDO {
                 for (j = 0; j < M; j++) {
                     aux = 0.0;
                     for (k = 0; k < PP; k += 4) {
-                        aux += matrizA[i][k] * matrizB[k][j] + matrizA[i][k + 1] * matrizB[k + 1][j]
-                                + matrizA[i][k + 2] * matrizB[k + 2][j] + matrizA[i][k + 3] * matrizB[k + 3][j];
+                        aux += A[i][k]*B[k][j] + A[i][k+1]*B[k+1][j] + A[i][k+2]*B[k+2][j]
+                                + A[i][k+3]*B[k+3][j];
                     }
-                    matrizC[i][j] = aux + matrizA[i][PP] * matrizB[PP][j] + matrizA[i][PPP] * matrizB[PPP][j];
+                    Result[i][j] = aux + A[i][PP]*B[PP][j] + A[i][PPP]*B[PPP][j];
                 }
             }
         } else {
@@ -124,10 +124,11 @@ public class ERROR_NaivLoopUnrollingFour_PEDIDO {
                 for (j = 0; j < M; j++) {
                     aux = 0.0;
                     for (k = 0; k < PP; k += 4) {
-                        aux += matrizA[i][k] * matrizB[k][j] + matrizA[i][k + 1] * matrizB[k + 1][j]
-                                + matrizA[i][k + 2] * matrizB[k + 2][j] + matrizA[i][k + 3] * matrizB[k + 3][j];
+                        aux += A[i][k]*B[k][j] + A[i][k+1]*B[k+1][j] + A[i][k+2]*B[k+2][j]
+                                + A[i][k+3]*B[k+3][j];
                     }
-                    matrizC[i][j] = aux + matrizA[i][PP] * matrizB[PP][j] + matrizA[i][PPP]*matrizB[PPP][j] + matrizA[i][PPPP]*matrizB[PPPP][j];
+                    Result[i][j] = aux + A[i][PP]*B[PP][j] + A[i][PPP]*B[PPP][j]
+                            + A[i][PPPP]*B[PPPP][j];
                 }
             }
         }
