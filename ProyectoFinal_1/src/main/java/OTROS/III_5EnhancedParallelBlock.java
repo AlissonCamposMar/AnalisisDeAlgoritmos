@@ -1,4 +1,4 @@
-package MultiplicacionDeMatrices;
+package OTROS;
 
 import org.junit.Test;
 

@@ -1,13 +1,10 @@
-package MultiplicacionDeMatrices;
+package OTROS;
 
 import org.junit.Test;
 
 import java.util.Random;
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.RecursiveAction;
-import java.util.stream.IntStream;
 
-public class V_6Parallel {
+public class V_2EnhancedSequential {
     public static int[][] llenarMatrizAleatoria(int filas, int columnas) {
         int[][] matriz = new int[filas][columnas];
 
@@ -76,23 +73,18 @@ public class V_6Parallel {
          * Sirve
          */
 
+        //V.2 Enhanced Sequential
+        // Realizar el bucle
 
-        //V .6 Parallel
-
-        ForkJoinPool pool = new ForkJoinPool();
-
-        pool.invoke(new RecursiveAction() {
-            @Override
-            protected void compute() {
-                IntStream.range(0, size).parallel().forEach(i -> {
-                    for (int j = 0; j < size; j++) {
-                        for (int k = 0; k < size; k++) {
-                            matrizA[k][i] += matrizB[k][j] * matrizC[j][i];
-                        }
-                    }
-                });
+        double c1; // variable temporal
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                c1 = matrizC[j][i];
+                for (int k = 0; k < size; k++) {
+                    matrizA[k][i] += matrizB[k][j] * c1;
+                }
             }
-        });
+        }
 
 
         imprimirMatriz(matrizA, "A", size);

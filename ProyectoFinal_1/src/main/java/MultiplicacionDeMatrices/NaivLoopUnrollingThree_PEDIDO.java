@@ -4,8 +4,7 @@ import org.junit.Test;
 
 import java.util.Random;
 
-public class NaivStandard_PEDIDO {
-
+public class NaivLoopUnrollingThree_PEDIDO {
     public static int[][] llenarMatrizAleatoria(int filas, int columnas) {
         int[][] matriz = new int[filas][columnas];
 
@@ -71,21 +70,46 @@ public class NaivStandard_PEDIDO {
          *
          */
 
-        NaivStandard(matrizA, matrizB, matrizC, size,size,size);
+        NaivLoopUnrollingThree(matrizA, matrizB, matrizC, size,size,size);
 
         imprimirMatriz(matrizC, "C", size);
     }
 
-
-    public void NaivStandard(double[][] matrizA, double[][] matrizB, double[][] matrizC, int N, int P, int M){
+    public void NaivLoopUnrollingThree(double[][] matrizA, double[][] matrizB, double[][] matrizC, int N, int P, int M) {
+        int i, j, k;
         double aux;
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < M; j++) {
-                aux = 0.0;
-                for (int k = 0; k < P; k++) {
-                    aux += matrizA[i][k] * matrizB[k][j];
+        if (P % 3 == 0) {
+            for (i = 0; i < N; i++) {
+                for (j = 0; j < M; j++) {
+                    aux = 0.0;
+                    for (k = 0; k < P; k += 3) {
+                        aux += matrizA[i][k]*matrizB[k][j] + matrizA[i][k+1]*matrizB[k+1][j] + matrizA[i][k+2]*matrizB[k+2][j];
+                    }
+                    matrizC[i][j] = aux;
                 }
-                matrizC[i][j] = aux;
+            }
+        } else if (P % 3 == 1) {
+            int PP = P - 1;
+            for (i = 0; i < N; i++) {
+                for (j = 0; j < M; j++) {
+                    aux = 0.0;
+                    for (k = 0; k < PP; k += 3) {
+                        aux += matrizA[i][k]*matrizB[k][j] + matrizA[i][k+1]*matrizB[k+1][j] + matrizA[i][k+2]*matrizB[k+2][j];
+                    }
+                    matrizC[i][j] = aux + matrizA[i][PP]*matrizB[PP][j];
+                }
+            }
+        } else {
+            int PP = P - 2;
+            int PPP = P - 1;
+            for (i = 0; i < N; i++) {
+                for (j = 0; j < M; j++) {
+                    aux = 0.0;
+                    for (k = 0; k < PP; k += 3) {
+                        aux += matrizA[i][k]*matrizB[k][j] + matrizA[i][k+1]*matrizB[k+1][j] + matrizA[i][k+2]*matrizB[k+2][j];
+                    }
+                    matrizC[i][j] = aux + matrizA[i][PP]*matrizB[PP][j] + matrizA[i][PPP]*matrizB[PPP][j];
+                }
             }
         }
     }

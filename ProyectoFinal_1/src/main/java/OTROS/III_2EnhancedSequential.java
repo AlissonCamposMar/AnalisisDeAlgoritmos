@@ -1,11 +1,10 @@
-package MultiplicacionDeMatrices;
+package OTROS;
 
 import org.junit.Test;
 
 import java.util.Random;
 
-public class NaivStandard_PEDIDO {
-
+public class III_2EnhancedSequential {
     public static int[][] llenarMatrizAleatoria(int filas, int columnas) {
         int[][] matriz = new int[filas][columnas];
 
@@ -20,7 +19,7 @@ public class NaivStandard_PEDIDO {
         return matriz;
     }
 
-    public void imprimirMatriz(double[][] matriz,String letra,int size)
+    public void imprimirMatriz(int[][] matriz,String letra,int size)
     {
         // Imprimir la matriz A
         System.out.println("Matriz"+letra+": ");
@@ -33,28 +32,31 @@ public class NaivStandard_PEDIDO {
 
     }
     @Test
-    public void metodosTraducidos() {
+    public void metodosTraducidos(){
 
         // Tamaño de las matrices
         int size = 4;
 
-        double[][] matrizA = {
+        //Raiz cuadrada del tamaño de las matrices
+        int bsize = (int) Math.sqrt(size);
+
+        int[][] matrizB = {
                 {7, 3, 4, 9},
                 {4, 8, 7, 9},
                 {2, 8, 0, 5},
                 {0, 2, 3, 7}
         };
         //int[][] matrizB = llenarMatrizAleatoria(size, size);
-        imprimirMatriz(matrizA, "A", size);
+        imprimirMatriz(matrizB, "B", size);
 
-        double[][] matrizB = {
+        int[][] matrizC = {
                 {7, 0, 2, 8},
                 {0, 0, 2, 7},
                 {3, 0, 8, 8},
                 {8, 9, 8, 4}
         };
         //int[][] matrizC = llenarMatrizAleatoria(size, size);
-        imprimirMatriz(matrizB, "B", size);
+        imprimirMatriz(matrizC, "C", size);
 
         //Resultado de esta multiplicación
         /*
@@ -65,28 +67,23 @@ public class NaivStandard_PEDIDO {
          */
 
         //Matriz del resultado de la multiplicación
-        double[][] matrizC = new double[size][size];
+        int[][] matrizA = new int[size][size];
 
         /**
-         *
+         * Sirve
          */
-
-        NaivStandard(matrizA, matrizB, matrizC, size,size,size);
-
-        imprimirMatriz(matrizC, "C", size);
-    }
-
-
-    public void NaivStandard(double[][] matrizA, double[][] matrizB, double[][] matrizC, int N, int P, int M){
-        double aux;
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < M; j++) {
-                aux = 0.0;
-                for (int k = 0; k < P; k++) {
-                    aux += matrizA[i][k] * matrizB[k][j];
+        int sum;
+        //III.2 Enhanced Sequential
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                sum = 0;
+                for (int k = 0; k < size; k++) {
+                    sum += matrizB[i][k] * matrizC[k][j];
                 }
-                matrizC[i][j] = aux;
+                matrizA[i][j] = sum;
             }
         }
+        imprimirMatriz(matrizA, "A", size);
+
     }
 }

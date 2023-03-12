@@ -1,13 +1,11 @@
-package MultiplicacionDeMatrices;
+package OTROS;
 
 import org.junit.Test;
 
 import java.util.Random;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.stream.IntStream;
 
-public class IV_6Parallel {
+public class III_6Parallel {
     public static int[][] llenarMatrizAleatoria(int filas, int columnas) {
         int[][] matriz = new int[filas][columnas];
 
@@ -76,30 +74,14 @@ public class IV_6Parallel {
          * Sirve
          */
 
-        //IV.6 Parallel
-
-        ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-
-
-        // Realizar el bucle en paralelo
-        for (int i = 0; i < size; i++) {
-            final int index = i;
-            executor.execute(() -> {
-                for (int j = 0; j < size; j++) {
-                    for (int k = 0; k < size; k++) {
-                        matrizA[index][k] += matrizB[index][j] * matrizC[j][k];
-                    }
+        //III.6 Parallel
+        IntStream.range(0, size).parallel().forEach(i -> {
+            for (int j = 0; j < size; j++) {
+                for (int k = 0; k < size; k++) {
+                    matrizA[i][j] += matrizB[i][k] * matrizC[k][j];
                 }
-            });
-        }
-
-        // Esperar a que todas las tareas terminen
-        executor.shutdown();
-        try {
-            executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
-        } catch (InterruptedException e) {
-            // Manejo de excepción
-        }
+            }
+        });
 
 
         imprimirMatriz(matrizA, "A", size);

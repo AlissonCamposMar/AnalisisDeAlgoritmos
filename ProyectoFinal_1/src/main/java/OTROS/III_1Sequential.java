@@ -1,13 +1,11 @@
-package MultiplicacionDeMatrices;
+package OTROS;
 
 import org.junit.Test;
 
 import java.util.Random;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
-public class IV_5EnhancedParallelBlock {
+public class III_1Sequential {
+
     public static int[][] llenarMatrizAleatoria(int filas, int columnas) {
         int[][] matriz = new int[filas][columnas];
 
@@ -72,56 +70,21 @@ public class IV_5EnhancedParallelBlock {
         //Matriz del resultado de la multiplicación
         int[][] matrizA = new int[size][size];
 
-
         /**
          * Sirve
          */
 
-        //IV. 5 Enhanced Parallel Block
+        //Row by Column Method
 
-        ExecutorService executor = Executors.newFixedThreadPool(2);
-        // Primera tarea
-        executor.submit(() -> {
-            for (int i1 = 0; i1 < size / 2; i1 += bsize) {
-                for (int j1 = 0; j1 < size; j1 += bsize) {
-                    for (int k1 = 0; k1 < size; k1 += bsize) {
-                        for (int i = i1; i < i1 + bsize && i < size; i++) {
-                            for (int j = j1; j < j1 + bsize && j < size; j++) {
-                                for (int k = k1; k < k1 + bsize && k < size; k++) {
-                                    matrizA[i][k] += matrizB[i][j] * matrizC[j][k];
-                                }
-                            }
-                        }
-                    }
+        //III.1 Sequential
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                for (int k = 0; k < size; k++) {
+                    //System.out.println(matrizB[i][k] * matrizC[k][j]);
+                    matrizA[i][j] += matrizB[i][k] * matrizC[k][j];
                 }
             }
-        });
-
-        // Segunda tarea
-        executor.submit(() -> {
-            for (int i1 = size / 2; i1 < size; i1 += bsize) {
-                for (int j1 = 0; j1 < size; j1 += bsize) {
-                    for (int k1 = 0; k1 < size; k1 += bsize) {
-                        for (int i = i1; i < i1 + bsize && i < size; i++) {
-                            for (int j = j1; j < j1 + bsize && j < size; j++) {
-                                for (int k = k1; k < k1 + bsize && k < size; k++) {
-                                    matrizA[i][k] += matrizB[i][j] * matrizC[j][k];
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        });
-
-        // Esperar a que ambas tareas terminen
-        executor.shutdown();
-        try {
-            executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
-        } catch (InterruptedException e) {
-            // Manejo de excepción
         }
-
         imprimirMatriz(matrizA, "A", size);
 
     }

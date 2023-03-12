@@ -4,7 +4,8 @@ import org.junit.Test;
 
 import java.util.Random;
 
-public class III_2EnhancedSequential {
+public class NaivKahan_PEDIDO {
+
     public static int[][] llenarMatrizAleatoria(int filas, int columnas) {
         int[][] matriz = new int[filas][columnas];
 
@@ -19,7 +20,7 @@ public class III_2EnhancedSequential {
         return matriz;
     }
 
-    public void imprimirMatriz(int[][] matriz,String letra,int size)
+    public void imprimirMatriz(double[][] matriz,String letra,int size)
     {
         // Imprimir la matriz A
         System.out.println("Matriz"+letra+": ");
@@ -32,31 +33,28 @@ public class III_2EnhancedSequential {
 
     }
     @Test
-    public void metodosTraducidos(){
+    public void metodosTraducidos() {
 
         // Tamaño de las matrices
         int size = 4;
 
-        //Raiz cuadrada del tamaño de las matrices
-        int bsize = (int) Math.sqrt(size);
-
-        int[][] matrizB = {
+        double[][] matrizA = {
                 {7, 3, 4, 9},
                 {4, 8, 7, 9},
                 {2, 8, 0, 5},
                 {0, 2, 3, 7}
         };
         //int[][] matrizB = llenarMatrizAleatoria(size, size);
-        imprimirMatriz(matrizB, "B", size);
+        imprimirMatriz(matrizA, "A", size);
 
-        int[][] matrizC = {
+        double[][] matrizB = {
                 {7, 0, 2, 8},
                 {0, 0, 2, 7},
                 {3, 0, 8, 8},
                 {8, 9, 8, 4}
         };
         //int[][] matrizC = llenarMatrizAleatoria(size, size);
-        imprimirMatriz(matrizC, "C", size);
+        imprimirMatriz(matrizB, "B", size);
 
         //Resultado de esta multiplicación
         /*
@@ -67,23 +65,33 @@ public class III_2EnhancedSequential {
          */
 
         //Matriz del resultado de la multiplicación
-        int[][] matrizA = new int[size][size];
+        double[][] matrizC = new double[size][size];
 
         /**
-         * Sirve
+         *
          */
-        int sum;
-        //III.2 Enhanced Sequential
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                sum = 0;
-                for (int k = 0; k < size; k++) {
-                    sum += matrizB[i][k] * matrizC[k][j];
+
+        NaivKhan(matrizA, matrizB, matrizC, size,size,size);
+
+        imprimirMatriz(matrizC, "C", size);
+    }
+
+    public void NaivKhan(double[][] matrizA, double[][] matrizB, double[][] matrizC, int N, int P, int M) {
+        double t, sum, err;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                sum = 0.0;
+                err = 0.0;
+                for (int k = 0; k < P; k++) {
+                    err = err + matrizA[i][k] * matrizB[k][j];
+                    t = sum + err;
+                    err = (sum - t) + err;
+                    sum = t;
                 }
-                matrizA[i][j] = sum;
+                matrizC[i][j] = sum;
             }
         }
-        imprimirMatriz(matrizA, "A", size);
-
     }
+
+
 }

@@ -1,10 +1,13 @@
-package MultiplicacionDeMatrices;
+package OTROS;
 
 import org.junit.Test;
 
 import java.util.Random;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.RecursiveAction;
+import java.util.stream.IntStream;
 
-public class IV_2EnhancedSequential {
+public class V_6Parallel {
     public static int[][] llenarMatrizAleatoria(int filas, int columnas) {
         int[][] matriz = new int[filas][columnas];
 
@@ -73,15 +76,24 @@ public class IV_2EnhancedSequential {
          * Sirve
          */
 
-        //IV.2 Enhanced Sequential
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                int a1 = matrizB[i][j];
-                for (int k = 0; k < size; k++) {
-                    matrizA[i][k] += a1 * matrizC[j][k];
-                }
+
+        //V .6 Parallel
+
+        ForkJoinPool pool = new ForkJoinPool();
+
+        pool.invoke(new RecursiveAction() {
+            @Override
+            protected void compute() {
+                IntStream.range(0, size).parallel().forEach(i -> {
+                    for (int j = 0; j < size; j++) {
+                        for (int k = 0; k < size; k++) {
+                            matrizA[k][i] += matrizB[k][j] * matrizC[j][i];
+                        }
+                    }
+                });
             }
-        }
+        });
+
 
         imprimirMatriz(matrizA, "A", size);
 

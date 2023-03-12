@@ -1,10 +1,13 @@
-package MultiplicacionDeMatrices;
+package OTROS;
 
 import org.junit.Test;
 
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
-public class V_2EnhancedSequential {
+public class IV_6Parallel {
     public static int[][] llenarMatrizAleatoria(int filas, int columnas) {
         int[][] matriz = new int[filas][columnas];
 
@@ -73,17 +76,29 @@ public class V_2EnhancedSequential {
          * Sirve
          */
 
-        //V.2 Enhanced Sequential
-        // Realizar el bucle
+        //IV.6 Parallel
 
-        double c1; // variable temporal
+        ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+
+
+        // Realizar el bucle en paralelo
         for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                c1 = matrizC[j][i];
-                for (int k = 0; k < size; k++) {
-                    matrizA[k][i] += matrizB[k][j] * c1;
+            final int index = i;
+            executor.execute(() -> {
+                for (int j = 0; j < size; j++) {
+                    for (int k = 0; k < size; k++) {
+                        matrizA[index][k] += matrizB[index][j] * matrizC[j][k];
+                    }
                 }
-            }
+            });
+        }
+
+        // Esperar a que todas las tareas terminen
+        executor.shutdown();
+        try {
+            executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+        } catch (InterruptedException e) {
+            // Manejo de excepción
         }
 
 

@@ -1,11 +1,10 @@
-package MultiplicacionDeMatrices;
+package OTROS;
 
 import org.junit.Test;
 
 import java.util.Random;
 
-public class III_1Sequential {
-
+public class IV_2EnhancedSequential {
     public static int[][] llenarMatrizAleatoria(int filas, int columnas) {
         int[][] matriz = new int[filas][columnas];
 
@@ -74,17 +73,16 @@ public class III_1Sequential {
          * Sirve
          */
 
-        //Row by Column Method
-
-        //III.1 Sequential
+        //IV.2 Enhanced Sequential
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
+                int a1 = matrizB[i][j];
                 for (int k = 0; k < size; k++) {
-                    //System.out.println(matrizB[i][k] * matrizC[k][j]);
-                    matrizA[i][j] += matrizB[i][k] * matrizC[k][j];
+                    matrizA[i][k] += a1 * matrizC[j][k];
                 }
             }
         }
+
         imprimirMatriz(matrizA, "A", size);
 
     }
