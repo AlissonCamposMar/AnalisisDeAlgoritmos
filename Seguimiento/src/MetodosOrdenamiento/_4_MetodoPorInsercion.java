@@ -1,6 +1,6 @@
 package MetodosOrdenamiento;
 
-public class MetodoPorInsercion {
+public class _4_MetodoPorInsercion {
 
     public static void main(String[] args) {
 
@@ -28,12 +28,14 @@ public class MetodoPorInsercion {
         for(int i= 0; i<arreglo.length;i++){
             arreglo[i] = (int) (Math.random()* arreglo.length);
         }
+        System.out.println("\nArreglo\n");
+        imprimirNumOrdenados(arreglo);
         insercion(arreglo);
     }
 
     public static void insercion( int arreglo[] ) {
-        int i;
-        int llave;
+
+        int i, llave;
         for ( int j = 1 ; j < arreglo.length ; j++ ) {
             llave = arreglo[ j ];
             i = j - 1;
@@ -43,12 +45,12 @@ public class MetodoPorInsercion {
             }
             arreglo[i + 1] = llave;
         }
+        System.out.println("\nArreglo ordenado de forma creciente\n");
         imprimirNumOrdenados(arreglo);
     }
 
     private static void imprimirNumOrdenados(int[] arreglo) {
 
-        System.out.println("\nArreglo ordenado de forma creciente\n");
         for(int i=0;i< arreglo.length;i++){
             System.out.print(" - " + arreglo[i]);
         }

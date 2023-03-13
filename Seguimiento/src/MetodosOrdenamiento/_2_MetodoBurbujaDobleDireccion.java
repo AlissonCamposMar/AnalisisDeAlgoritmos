@@ -1,6 +1,6 @@
 package MetodosOrdenamiento;
 
-public class MetodoBurbujaDobleDireccion {
+public class _2_MetodoBurbujaDobleDireccion {
     public static void main(String[] args) {
 
         int arreglo[];
@@ -26,6 +26,8 @@ public class MetodoBurbujaDobleDireccion {
         for(int i= 0; i<arreglo.length;i++){
             arreglo[i] = (int) (Math.random()* arreglo.length);
         }
+        System.out.println("\nArreglo\n");
+        imprimirNumOrdenados(arreglo);
         shakerSort(arreglo);
     }
 
@@ -51,13 +53,13 @@ public class MetodoBurbujaDobleDireccion {
             }
             ultimo = dir - 1;
         }
+        System.out.println("\nArreglo ordenado de forma creciente\n");
         imprimirNumOrdenados(x);
     }
 
     private static void imprimirNumOrdenados(int[] arreglo) {
 
-        System.out.println("\nArreglo ordenado de forma creciente\n");
-        for(int i=0;i< arreglo.length;i++){
+         for(int i=0;i< arreglo.length;i++){
             System.out.print(" - " + arreglo[i]);
         }
     }

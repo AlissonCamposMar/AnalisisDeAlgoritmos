@@ -1,6 +1,6 @@
 package MetodosOrdenamiento;
 
-public class MetodoPorSeleccion {
+public class _1_MetodoBurbuja {
     public static void main(String[] args) {
 
         int arreglo[];
@@ -27,32 +27,39 @@ public class MetodoPorSeleccion {
         for(int i= 0; i<arreglo.length;i++){
             arreglo[i] = (int) (Math.random()* arreglo.length);
         }
-        seleccion(arreglo);
+        System.out.println("\nArreglo\n");
+        imprimirNumOrdenados(arreglo);
+        burbuja(arreglo);
     }
 
-    private static void seleccion(int[] arreglo) {
-        int i, j, k, menor;
-        i = 0;
-        while( i < arreglo.length - 1) {
-            menor = arreglo [i];
-            k = i;
-            for( j = i+1; j < arreglo.length; j++) {
-                if (arreglo [j] < menor ) {
-                    menor = arreglo [j];
-                    k = j;
+    /**
+     *
+     * @param arreglo
+     */
+    public static void burbuja(int arreglo[]) {
+        int aux;
+        /**
+         * Ordenado de forma creciente
+         */
+        for( int j = 1 ; j < arreglo.length ; j++) {
+            for( int i = 0 ; i<arreglo.length-1 ; i++) {
+                if ( arreglo[ i ] > arreglo[i+1] ) {
+                    aux = arreglo[ i ];
+                    arreglo[i] = arreglo[i + 1];
+                    arreglo[i+1] = aux;
                 }
             }
-            arreglo [k] = arreglo[i];
-            arreglo [i] = menor;
-            i++;
         }
+        System.out.println("\nArreglo ordenado\n");
         imprimirNumOrdenados(arreglo);
     }
+
     private static void imprimirNumOrdenados(int[] arreglo) {
 
-        System.out.println("\nArreglo ordenado de forma creciente\n");
-        for(int i=0;i< arreglo.length;i++){
-            System.out.print(" - " + arreglo[i]);
+        for(int k=0;k< arreglo.length;k++){
+            System.out.print(" - " + arreglo[k]);
         }
+
     }
+
 }

@@ -1,6 +1,6 @@
 package MetodosOrdenamiento;
 
-public class MetodoSellShort {
+public class _5_MetodoShell {
     public static void main(String[] args) {
 
         int arreglo[];
@@ -27,31 +27,36 @@ public class MetodoSellShort {
         for(int i= 0; i<arreglo.length;i++){
             arreglo[i] = (int) (Math.random()* arreglo.length);
         }
-        shellSort(arreglo);
+        System.out.println("\nArreglo\n");
+        imprimirNumOrdenados(arreglo);
+        shell(arreglo);
     }
 
-    public static void shellSort(int a[]) {
-        for (int incr = a.length/2; incr>0; incr/= 2 ) {
-            for (int i = incr ; i < a.length ; i++ ) {
-                int j = i - incr;
-                while (j >= 0) {
-                    if (a[j] > a[j + incr]) {
-                        int T = a[ j ];
-                        a[ j ] = a[j+incr];
-                        a[j+incr] = T;
-                        j -= incr;
-                    } else {
-                        j = -1;
+    public static void shell(int a[]) {
+        int salto, aux, i;
+        boolean cambios;
+
+        for (salto = a.length / 2; salto != 0; salto /= 2) {
+            cambios = true;
+            while (cambios) {   // Mientras se intercambie algún elemento
+                cambios = false;
+                for (i = salto; i < a.length; i++)   // se da una pasada
+                {
+                    if (a[i - salto] > a[i]) {       // y si están desordenados
+                        aux = a[i];                  // se reordenan
+                        a[i] = a[i - salto];
+                        a[i - salto] = aux;
+                        cambios = true;              // y se marca como cambio.
                     }
                 }
             }
         }
+        System.out.println("\nArreglo ordenado de forma creciente\n");
         imprimirNumOrdenados(a);
     }
 
     private static void imprimirNumOrdenados(int[] arreglo) {
 
-        System.out.println("\nArreglo ordenado de forma creciente\n");
         for(int i=0;i< arreglo.length;i++){
             System.out.print(" - " + arreglo[i]);
         }
