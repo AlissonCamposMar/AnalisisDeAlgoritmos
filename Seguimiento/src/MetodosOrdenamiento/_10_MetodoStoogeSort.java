@@ -1,6 +1,6 @@
 package MetodosOrdenamiento;
 
-public class MetodoStoogeSort {
+public class _10_MetodoStoogeSort {
     public static void main(String[] args) {
 
         int arreglo[];

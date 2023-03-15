@@ -1,6 +1,6 @@
 package MetodosOrdenamiento;
 
-public class MetodoRecursivoInsertionSort {
+public class _5_MetodoRecursivoInsertionSort {
     public static void main(String[] args) {
 
         int arreglo[];

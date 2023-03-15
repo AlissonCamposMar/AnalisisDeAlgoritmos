@@ -1,6 +1,6 @@
 package MetodosOrdenamiento;
 
-public class _5_MetodoShell {
+public class _6_MetodoShell {
     public static void main(String[] args) {
 
         int arreglo[];

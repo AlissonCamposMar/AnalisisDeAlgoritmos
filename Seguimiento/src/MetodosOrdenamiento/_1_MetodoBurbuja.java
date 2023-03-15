@@ -28,7 +28,7 @@ public class _1_MetodoBurbuja {
             arreglo[i] = (int) (Math.random()* arreglo.length);
         }
         System.out.println("\nArreglo\n");
-        imprimirNumOrdenados(arreglo);
+        imprimirNum(arreglo);
         burbuja(arreglo);
     }
 
@@ -38,11 +38,12 @@ public class _1_MetodoBurbuja {
      */
     public static void burbuja(int arreglo[]) {
         int aux;
+        int tam = arreglo.length;
         /**
          * Ordenado de forma creciente
          */
-        for( int j = 1 ; j < arreglo.length ; j++) {
-            for( int i = 0 ; i<arreglo.length-1 ; i++) {
+        for( int j = 1 ; j < tam ; j++) {
+            for( int i = 0 ; i < tam - 1 ; i++) {
                 if ( arreglo[ i ] > arreglo[i+1] ) {
                     aux = arreglo[ i ];
                     arreglo[i] = arreglo[i + 1];
@@ -51,10 +52,10 @@ public class _1_MetodoBurbuja {
             }
         }
         System.out.println("\nArreglo ordenado\n");
-        imprimirNumOrdenados(arreglo);
+        imprimirNum(arreglo);
     }
 
-    private static void imprimirNumOrdenados(int[] arreglo) {
+    private static void imprimirNum(int[] arreglo) {
 
         for(int k=0;k< arreglo.length;k++){
             System.out.print(" - " + arreglo[k]);

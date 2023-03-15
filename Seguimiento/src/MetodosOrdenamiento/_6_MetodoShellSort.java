@@ -1,6 +1,6 @@
 package MetodosOrdenamiento;
 
-public class MetodoShellSort {
+public class _6_MetodoShellSort {
     public static void main(String[] args) {
 
         int arreglo[];

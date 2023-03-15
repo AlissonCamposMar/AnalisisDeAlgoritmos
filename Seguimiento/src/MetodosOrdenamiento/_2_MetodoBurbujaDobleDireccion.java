@@ -32,7 +32,11 @@ public class _2_MetodoBurbujaDobleDireccion {
     }
 
     public static void shakerSort( int x[ ] ) {
-        int aux, primero = 1, ultimo = x.length - 1, dir = x.length - 1;
+        int aux, primero, ultimo, dir;
+        primero = 1;
+        ultimo = x.length - 1;
+        dir = x.length - 1;
+
         while ( ultimo >= primero ) {
             for( int i = ultimo ; i >= primero ; i--) {
                 if ( x [i - 1] > x[ i ] ) {

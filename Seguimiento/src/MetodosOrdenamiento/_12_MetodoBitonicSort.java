@@ -1,6 +1,6 @@
 package MetodosOrdenamiento;
 
-public class MetodoBitonicSort {
+public class _12_MetodoBitonicSort {
     public static void main(String[] args) {
 
         int arreglo[];

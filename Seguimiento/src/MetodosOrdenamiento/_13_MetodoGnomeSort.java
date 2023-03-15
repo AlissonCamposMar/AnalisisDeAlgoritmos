@@ -1,6 +1,6 @@
 package MetodosOrdenamiento;
 
-public class MetodoGnomeSort {
+public class _13_MetodoGnomeSort {
 
     public static void main(String[] args) {
 

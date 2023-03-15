@@ -1,6 +1,6 @@
 package MetodosOrdenamiento;
 
-public class MetodoHeapSort {
+public class _11_MetodoHeapSort {
     public static void main(String[] args) {
 
         int arreglo[];

@@ -1,6 +1,6 @@
 package MetodosOrdenamiento;
 
-public class MetodoQuickSort {
+public class _9_MetodoQuickSort {
     public static void main(String[] args) {
 
         int arreglo[];

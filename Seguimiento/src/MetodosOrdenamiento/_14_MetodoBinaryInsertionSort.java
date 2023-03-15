@@ -1,6 +1,6 @@
 package MetodosOrdenamiento;
 
-public class MetodoBinaryInsertionSort {
+public class _14_MetodoBinaryInsertionSort {
     public static void main(String[] args) {
 
         int arreglo[];
@@ -27,11 +27,11 @@ public class MetodoBinaryInsertionSort {
         for(int i= 0; i<arreglo.length;i++){
             arreglo[i] = (int) (Math.random()* arreglo.length);
         }
-        MetodoBinaryInsertionSort ordenarArray = new MetodoBinaryInsertionSort();
+        _14_MetodoBinaryInsertionSort ordenarArray = new _14_MetodoBinaryInsertionSort();
         ordenarArray.sort(arreglo);
         ordenarArray.imprimirNumOrdenados(arreglo);
 
-        //new MetodoBinaryInsertionSort().binaryInsercionSort(arreglo);
+        //new _14_MetodoBinaryInsertionSort().binaryInsercionSort(arreglo);
     }
 
     private static void sort(int[] arreglo) {

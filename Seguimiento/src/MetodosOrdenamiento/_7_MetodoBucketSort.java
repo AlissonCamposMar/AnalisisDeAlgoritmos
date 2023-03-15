@@ -3,7 +3,7 @@ package MetodosOrdenamiento;
 import java.util.Collections;
 import java.util.Vector;
 
-public class MetodoBucketSort <T extends Number & Comparable<T>>{
+public class _7_MetodoBucketSort<T extends Number & Comparable<T>>{
     // Driver code
     public static void main(String[] args) {
 

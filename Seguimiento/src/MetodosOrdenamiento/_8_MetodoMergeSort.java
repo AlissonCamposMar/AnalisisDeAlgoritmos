@@ -1,6 +1,6 @@
 package MetodosOrdenamiento;
 
-public class MetodoMergeSort {
+public class _8_MetodoMergeSort {
     public static void main(String[] args) {
 
         int arreglo[];
