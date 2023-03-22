@@ -1,43 +1,19 @@
 package MetodosOrdenamiento;
 
 public class _10_MetodoStoogeSort {
-    public static void main(String[] args) {
 
-        int arreglo[];
-        int numElementos;
-        long tiempoInicioEjecucion = System.nanoTime();
-
-        numElementos = 410000;
-        //System.out.println("Hello world!");
-
-        System.out.println("\nTamanio del arreglo es: " + numElementos + "\n");
-
-        arreglo = new int[numElementos];
-
-        ingresarNumeros(arreglo);
-
-        long tiempoFinEjecucion = System.nanoTime();
-        long totalTiempoEjecucion = tiempoFinEjecucion - tiempoInicioEjecucion;
-        double segundos = (double) totalTiempoEjecucion/1000000000.0;
-
-        System.out.println("\nTiempo de ejecución en segundos: " + segundos);
+    public static void StoogeSort (double[] arreglo){
+        System.out.println("Método StoogeSort");
+        stoogeSort(arreglo, 0, 0);
     }
-
-    public static void ingresarNumeros(int arreglo[]){
-        for(int i= 0; i<arreglo.length;i++){
-            arreglo[i] = (int) (Math.random()* arreglo.length);
-        }
-        imprimirNumOrdenados(stoogeSort(arreglo,0,0));
-    }
-
-    private static int[] stoogeSort(int[] arreglo, int l, int h) {
+    public static double[] stoogeSort(double[] arreglo, int l, int h) {
         if (l >= h)
             return arreglo;
 
         // Si el primer elemento es más pequeño
         // que el último, cámbialos
         if (arreglo[l] > arreglo[h]){
-            int auxt = arreglo[l];
+            double auxt = arreglo[l];
             arreglo[l] = arreglo[h];
             arreglo[h] = auxt;
         }
@@ -58,13 +34,5 @@ public class _10_MetodoStoogeSort {
             stoogeSort(arreglo, l, h - auxt);
         }
         return arreglo;
-    }
-
-    private static void imprimirNumOrdenados(int[] arreglo) {
-
-        System.out.println("\nArreglo ordenado de forma creciente\n");
-        for(int k=0;k< arreglo.length;k++){
-            System.out.print(" - " + arreglo[k]);
-        }
     }
 }

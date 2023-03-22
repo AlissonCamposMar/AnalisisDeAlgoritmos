@@ -1,41 +1,16 @@
 package MetodosOrdenamiento;
 
 public class _2_MetodoBurbujaDobleDireccion {
-    public static void main(String[] args) {
 
-        int arreglo[];
-        int numElementos;
-        long tiempoInicioEjecucion = System.nanoTime();
+    public static double[] BurbujaDobleDireccion(double[] x) {
 
-        numElementos = 410000;
-
-        System.out.println("\nTamanio del arreglo es: " + numElementos + "\n");
-
-        arreglo = new int[numElementos];
-
-        ingresarNumeros(arreglo);
-
-        long tiempoFinEjecucion = System.nanoTime();
-        long totalTiempoEjecucion = tiempoFinEjecucion - tiempoInicioEjecucion;
-        double segundos = (double) totalTiempoEjecucion/1000000000.0;
-
-        System.out.println("\nTiempo de ejecución en segundos: " + segundos);
-    }
-
-    public static void ingresarNumeros(int arreglo[]){
-        for(int i= 0; i<arreglo.length;i++){
-            arreglo[i] = (int) (Math.random()* arreglo.length);
-        }
-        System.out.println("\nArreglo\n");
-        imprimirNumOrdenados(arreglo);
-        shakerSort(arreglo);
-    }
-
-    public static void shakerSort( int x[ ] ) {
-        int aux, primero, ultimo, dir;
+        double aux;
+        int primero, ultimo, dir;
         primero = 1;
         ultimo = x.length - 1;
         dir = x.length - 1;
+
+        System.out.println("\n\nMétodo burbuja en doble dirección\n");
 
         while ( ultimo >= primero ) {
             for( int i = ultimo ; i >= primero ; i--) {
@@ -57,14 +32,9 @@ public class _2_MetodoBurbujaDobleDireccion {
             }
             ultimo = dir - 1;
         }
-        System.out.println("\nArreglo ordenado de forma creciente\n");
-        imprimirNumOrdenados(x);
+        System.out.println("\nArreglo ordenado\n");
+
+        return x;
     }
 
-    private static void imprimirNumOrdenados(int[] arreglo) {
-
-         for(int i=0;i< arreglo.length;i++){
-            System.out.print(" - " + arreglo[i]);
-        }
-    }
 }

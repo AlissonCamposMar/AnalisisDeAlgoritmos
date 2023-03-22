@@ -1,75 +1,48 @@
 package MetodosOrdenamiento;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Vector;
 
 public class _7_MetodoBucketSort<T extends Number & Comparable<T>>{
-    // Driver code
-    public static void main(String[] args) {
 
-        float arreglo[];
-        int numElementos;
-        long tiempoInicioEjecucion = System.nanoTime();
+    public static void BucketSort(double[] arreglo) {
 
-        //numElementos = 410000;
-        numElementos = 2;
-        //System.out.println("Hello world!");
+        System.out.println("\nMétodo shellSort\n");
 
-        System.out.println("\nTamanio del arreglo es: " + numElementos + "\n");
-
-        arreglo = new float[numElementos];
-
-        ingresarNumeros(arreglo);
-
-        long tiempoFinEjecucion = System.nanoTime();
-        long totalTiempoEjecucion = tiempoFinEjecucion - tiempoInicioEjecucion;
-        double segundos = (double) totalTiempoEjecucion/1000000000.0;
-
-        System.out.println("\nTiempo de ejecución en segundos: " + segundos);
-    }
-
-    public static void ingresarNumeros(float arreglo[]){
-        for(int i= 0; i<arreglo.length;i++){
-            arreglo[i] = (float) (Math.random()* arreglo.length);
-        }
-        imprimirNumOrdenados(BucketSort(arreglo, arreglo.length));
-    }
-
-    private static float[] BucketSort(float[] arreglo, int tamArr) {
-        if(tamArr <= 0)
-            return arreglo;
-        @SuppressWarnings("unchecked")
-        Vector<Float>[] buckets = new Vector[tamArr];
-
-        for (int i = 0 ; i < tamArr ; i++){
-            buckets[i] = new Vector<Float>();
+        if (arreglo == null || arreglo.length <= 1) {
+            return;
         }
 
-        for (int i = 0; i < tamArr; i++) {
-            float idx = arreglo[i] * tamArr;
-            buckets[(int)idx].add(arreglo[i]);
-        }
-
-        for (int i = 0; i < tamArr; i++) {
-            Collections.sort(buckets[i]);
-        }
-
-        int index = 0;
-        for (int i = 0; i < tamArr; i++) {
-            for (int j = 0; j < buckets[i].size(); j++) {
-                arreglo[index++] = buckets[i].get(j);
+        // Encontrar el valor máximo del arreglo
+        double maxValor = arreglo[0];
+        for (int i = 1; i < arreglo.length; i++) {
+            if (arreglo[i] > maxValor) {
+                maxValor = arreglo[i];
             }
         }
 
-        imprimirNumOrdenados(arreglo);
-        return arreglo;
-    }
+        // Crear los buckets y distribuir los elementos en ellos
+        int numBuckets = arreglo.length;
+        List<Double>[] buckets = new List[numBuckets];
+        for (int i = 0; i < numBuckets; i++) {
+            buckets[i] = new ArrayList<Double>();
+        }
 
-    private static void imprimirNumOrdenados(float[] arreglo) {
+        for (int i = 0; i < arreglo.length; i++) {
+            int bucketIndex = (int) ((arreglo[i] / maxValor) * (numBuckets - 1));
+            buckets[bucketIndex].add(arreglo[i]);
+        }
 
-        System.out.println("\nArreglo ordenado de forma creciente\n");
-        for(int i=0;i< arreglo.length;i++){
-            System.out.print(" - " + arreglo[i]);
+        // Ordenar los buckets y combinar los elementos en el arreglo original
+        int index = 0;
+        for (int i = 0; i < numBuckets; i++) {
+            List<Double> bucket = buckets[i];
+            Collections.sort(bucket);
+            for (double elemento : bucket) {
+                arreglo[index++] = elemento;
+            }
         }
     }
 }

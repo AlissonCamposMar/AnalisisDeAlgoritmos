@@ -1,39 +1,11 @@
 package MetodosOrdenamiento;
 
 public class _11_MetodoHeapSort {
-    public static void main(String[] args) {
 
-        int arreglo[];
-        int numElementos;
-        long tiempoInicioEjecucion = System.nanoTime();
+    public static void HeapSort(double arreglo[]){
 
-        numElementos = 410000;
-        //System.out.println("Hello world!");
+        System.out.println("Método HeapSort");
 
-        System.out.println("\nTamanio del arreglo es: " + numElementos + "\n");
-
-        arreglo = new int[numElementos];
-
-        ingresarNumeros(arreglo);
-
-        long tiempoFinEjecucion = System.nanoTime();
-        long totalTiempoEjecucion = tiempoFinEjecucion - tiempoInicioEjecucion;
-        double segundos = (double) totalTiempoEjecucion/1000000000.0;
-
-        System.out.println("\nTiempo de ejecución en segundos: " + segundos);
-    }
-
-    public static void ingresarNumeros(int arreglo[]){
-        for(int i= 0; i<arreglo.length;i++){
-            arreglo[i] = (int) (Math.random()* arreglo.length);
-        }
-        sort(arreglo);
-
-        imprimirNumOrdenados(arreglo);
-    }
-
-
-    public static void sort(int arreglo[]){
         // 1. Construye un gran montón superior
         for(int i=arreglo.length/2-1;i>=0;i--){
             // Ajusta la estructura desde el primer nodo no hoja de abajo hacia arriba y de derecha a izquierda
@@ -53,8 +25,8 @@ public class _11_MetodoHeapSort {
      * @param i
      * @param length
      */
-    public static void adjustHeap(int []arr,int i,int length){
-        int temp = arr [i]; // Eliminar primero el elemento actual i
+    public static void adjustHeap(double[] arr,int i,int length){
+        double temp = arr [i]; // Eliminar primero el elemento actual i
         for (int k = i * 2 + 1; k < length; k = k * 2 + 1) {// comenzando desde el hijo izquierdo de i, es decir, comenzando en 2i + 1
             if (k + 1 <length && arr [k] <arr [k + 1]) {// Si el niño izquierdo es más pequeño que el derecho, k apunta al niño derecho
                 k++;
@@ -69,16 +41,10 @@ public class _11_MetodoHeapSort {
         arr [i] = temp; // coloca el valor temporal en la posición final
     }
 
-    public static void swap(int []arr,int a ,int b){
-        int temp=arr[a];
+    public static void swap(double[] arr,int a ,int b){
+        double temp=arr[a];
         arr[a] = arr[b];
         arr[b] = temp;
     }
 
-    public static void imprimirNumOrdenados(int[] arreglo) {
-        System.out.println("\nArreglo ordenado de forma creciente\n");
-        for(int k=0;k< arreglo.length;k++){
-            System.out.print(" - " + arreglo[k]);
-        }
-    }
 }

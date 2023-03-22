@@ -1,36 +1,13 @@
 package MetodosOrdenamiento;
 
 public class _8_MetodoMergeSort {
-    public static void main(String[] args) {
 
-        int arreglo[];
-        int numElementos;
-        long tiempoInicioEjecucion = System.nanoTime();
-
-        numElementos = 410000;
-        //System.out.println("Hello world!");
-
-        System.out.println("\nTamanio del arreglo es: " + numElementos + "\n");
-
-        arreglo = new int[numElementos];
-
-        ingresarNumeros(arreglo, numElementos);
-
-        long tiempoFinEjecucion = System.nanoTime();
-        long totalTiempoEjecucion = tiempoFinEjecucion - tiempoInicioEjecucion;
-        double segundos = (double) totalTiempoEjecucion/1000000000.0;
-
-        System.out.println("\nTiempo de ejecución en segundos: " + segundos);
+    public static void MergeSort(double[] arreglo){
+        System.out.println("\nMétodo MergeSort\n");
+        mergeSort(arreglo);
     }
+    public static double[] mergeSort(double[] arreglo) {
 
-    public static void ingresarNumeros(int arreglo[], int numElementos){
-        for(int i= 0; i<numElementos;i++){
-            arreglo[i] = (int) (Math.random()*numElementos);
-        }
-        imprimirNumOrdenados(mergeSort(arreglo));
-    }
-
-    private static int[] mergeSort(int[] arreglo) {
         if (arreglo == null)
             return arreglo;
 
@@ -38,13 +15,13 @@ public class _8_MetodoMergeSort {
             int mid = arreglo.length/2;
 
             //Dividir la parte izquierda
-            int[] left = new int[mid];
+            double[] left = new double[mid];
             for (int i = 0 ; i < mid ; i++){
                 left[i] = arreglo[i];
             }
 
             //Dividir la parte derecha
-            int[] right = new int[arreglo.length - mid];
+            double[] right = new double[arreglo.length - mid];
             for (int i = mid ; i < arreglo.length ; i++){
                 right[i - mid] = arreglo[i];
             }
@@ -81,14 +58,7 @@ public class _8_MetodoMergeSort {
             }
         }
         return arreglo;
+
     }
 
-
-    private static void imprimirNumOrdenados(int[] arreglo) {
-
-        System.out.println("\nArreglo ordenado de forma creciente\n");
-        for(int k=0;k< arreglo.length;k++){
-            System.out.print(" - " + arreglo[k]);
-        }
-    }
 }

@@ -2,40 +2,11 @@ package MetodosOrdenamiento;
 
 public class _4_MetodoPorInsercion {
 
-    public static void main(String[] args) {
+    public static void porInsercion( double arreglo[] ) {
 
-        int arreglo[];
-        int numElementos;
-        long tiempoInicioEjecucion = System.nanoTime();
-
-        numElementos = 410000;
-        //System.out.println("Hello world!");
-
-        System.out.println("\nTamanio del arreglo es: " + numElementos + "\n");
-
-        arreglo = new int[numElementos];
-
-        ingresarNumeros(arreglo);
-
-        long tiempoFinEjecucion = System.nanoTime();
-        long totalTiempoEjecucion = tiempoFinEjecucion - tiempoInicioEjecucion;
-        double segundos = (double) totalTiempoEjecucion/1000000000.0;
-
-        System.out.println("\nTiempo de ejecución en segundos: " + segundos);
-    }
-
-    public static void ingresarNumeros(int arreglo[]){
-        for(int i= 0; i<arreglo.length;i++){
-            arreglo[i] = (int) (Math.random()* arreglo.length);
-        }
-        System.out.println("\nArreglo\n");
-        imprimirNumOrdenados(arreglo);
-        insercion(arreglo);
-    }
-
-    public static void insercion( int arreglo[] ) {
-
-        int i, llave;
+        /*int i;
+        double llave;
+        System.out.println("\n\n Metodo por inserción\n");
         for ( int j = 1 ; j < arreglo.length ; j++ ) {
             llave = arreglo[ j ];
             i = j - 1;
@@ -45,14 +16,21 @@ public class _4_MetodoPorInsercion {
             }
             arreglo[i + 1] = llave;
         }
-        System.out.println("\nArreglo ordenado de forma creciente\n");
-        imprimirNumOrdenados(arreglo);
-    }
+        System.out.println("\nArreglo ordenado\n");*/
+        System.out.println("\n\n Metodo por inserción");
+        int n = arreglo.length;
+        for (int i = 1; i < n; ++i) {
+            double key = arreglo[i];
+            int j = i - 1;
 
-    private static void imprimirNumOrdenados(int[] arreglo) {
-
-        for(int i=0;i< arreglo.length;i++){
-            System.out.print(" - " + arreglo[i]);
+            /* Move elements of arr[0..i-1], that are
+               greater than key, to one position ahead
+               of their current position */
+            while (j >= 0 && arreglo[j] > key) {
+                arreglo[j + 1] = arreglo[j];
+                j = j - 1;
+            }
+            arreglo[j + 1] = key;
         }
     }
 }

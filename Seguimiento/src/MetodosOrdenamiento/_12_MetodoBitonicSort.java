@@ -1,56 +1,44 @@
 package MetodosOrdenamiento;
 
 public class _12_MetodoBitonicSort {
-    public static void main(String[] args) {
 
-        int arreglo[];
-        int numElementos;
-        long tiempoInicioEjecucion = System.nanoTime();
 
-        numElementos = 2;
-        //System.out.println("Hello world!");
+    public static void BitonicSort(double arreglo[]){
 
-        System.out.println("\nTamanio del arreglo es: " + numElementos + "\n");
-
-        arreglo = new int[numElementos];
-
-        ingresarNumeros(arreglo);
-
-        long tiempoFinEjecucion = System.nanoTime();
-        long totalTiempoEjecucion = tiempoFinEjecucion - tiempoInicioEjecucion;
-        double segundos = (double) totalTiempoEjecucion/1000000000.0;
-
-        System.out.println("\nTiempo de ejecución en segundos: " + segundos);
+        bitonicSort(arreglo, 0, arreglo.length, 1);
     }
 
-    public static void ingresarNumeros(int arreglo[]){
-        for(int i= 0; i<arreglo.length;i++){
-            arreglo[i] = (int) (Math.random()* arreglo.length);
-        }
-        sort(arreglo, arreglo.length, 1);
+    public static void bitonicSort(double[] arreglo, int low, int longitud, int up) {
+        if (longitud > 1){
+            int medio = longitud/2;
 
-        imprimirNumOrdenados(arreglo);
-    }
+            // Ordenar la secuencia en orden ascendente o descendente
+            bitonicSort(arreglo, low, medio, 1);
+            bitonicSort(arreglo, low + medio, medio, 0);
 
-    public static void sort(int arreglo[], int N, int up){
-        bitonicSort(arreglo, 0, N, up);
-    }
-
-    public static void bitonicSort(int[] arreglo, int bajo, int cnt, int dir) {
-        if (cnt > 1){
-            int k = cnt/2;
-
-            bitonicSort(arreglo, bajo, k, 1);
-            bitonicSort(arreglo, bajo + k, k, 0);
-            bitonicSort(arreglo, bajo, cnt, dir);
+            // Combinar las dos secuencias para formar una secuencia bitónica
+            bitonicMerge(arreglo, low, longitud, up);
         }
     }
 
-
-    public static void imprimirNumOrdenados(int[] arreglo) {
-        System.out.println("\nArreglo ordenado de forma creciente\n");
-        for(int k=0;k< arreglo.length;k++){
-            System.out.print(" - " + arreglo[k]);
+    public static void bitonicMerge(double[] arreglo, int low, int longitud, int up) {
+        if (longitud > 1) {
+            int medio = longitud / 2;
+            for (int i = low; i < low + medio; i++) {
+                compararIntercambiar(arreglo, i, i + medio, up);
+            }
+            bitonicMerge(arreglo, low, medio, up);
+            bitonicMerge(arreglo, low + medio, medio, up);
         }
     }
+
+    public static void compararIntercambiar(double[] arreglo, int i, int j, int up) {
+        if ((arreglo[i] > arreglo[j] && up == 1) || (arreglo[i] < arreglo[j] && up == 0)){
+            // Intercambiar los elementos
+            double temp = arreglo[i];
+            arreglo[i] = arreglo[j];
+            arreglo[j] = temp;
+        }
+    }
+
 }

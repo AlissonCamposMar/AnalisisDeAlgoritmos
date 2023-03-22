@@ -1,73 +1,43 @@
 package MetodosOrdenamiento;
 
 public class _14_MetodoBinaryInsertionSort {
-    public static void main(String[] args) {
-
-        int arreglo[];
-        int numElementos;
-        long tiempoInicioEjecucion = System.nanoTime();
-
-        numElementos = 410000;
-        //System.out.println("Hello world!");
-
-        System.out.println("\nTamanio del arreglo es: " + numElementos + "\n");
-
-        arreglo = new int[numElementos];
-
-        ingresarNumeros(arreglo);
-
-        long tiempoFinEjecucion = System.nanoTime();
-        long totalTiempoEjecucion = tiempoFinEjecucion - tiempoInicioEjecucion;
-        double segundos = (double) totalTiempoEjecucion/1000000000.0;
-
-        System.out.println("\nTiempo de ejecución en segundos: " + segundos);
+    public static void BinaryInsertionSort(double[] arreglo) {
+        int tam = arreglo.length;
+        System.out.println("Método BinaryInsertionSort");
+        insertionSort(arreglo, tam);
     }
 
-    public static void ingresarNumeros(int arreglo[]){
-        for(int i= 0; i<arreglo.length;i++){
-            arreglo[i] = (int) (Math.random()* arreglo.length);
-        }
-        _14_MetodoBinaryInsertionSort ordenarArray = new _14_MetodoBinaryInsertionSort();
-        ordenarArray.sort(arreglo);
-        ordenarArray.imprimirNumOrdenados(arreglo);
+    static void insertionSort(double[] arreglo, int n) {
+        int i, loc, j, k;
+        double selected;
 
-        //new _14_MetodoBinaryInsertionSort().binaryInsercionSort(arreglo);
-    }
+        for (i = 1; i < n; ++i) {
+            j = i - 1;
+            selected = arreglo[i];
 
-    private static void sort(int[] arreglo) {
-        boolean swapped = true;
-        int start = 0;
-        int end = arreglo.length;
-        while (swapped == true) {
-            swapped = false;
-            for (int i = start; i < end - 1; ++i) {
-                if (arreglo[i] > arreglo[i + 1]) {
-                    int temp = arreglo[i];
-                    arreglo[i] = arreglo[i + 1];
-                    arreglo[i + 1] = temp;
-                    swapped = true;
-                }
+            // find location where selected should be inserted
+            loc = binarySearch(arreglo, selected, 0, j);
+
+            // Move all elements after location to create space
+            while (j >= loc) {
+                arreglo[j + 1] = arreglo[j];
+                j--;
             }
-            if (swapped == false)
-                break;
-            swapped = false;
-            end = end - 1;
-            for (int i = end - 1; i >= start; i--) {
-                if (arreglo[i] > arreglo[i + 1]) {
-                    int temp = arreglo[i];
-                    arreglo[i] = arreglo[i + 1];
-                    arreglo[i + 1] = temp;
-                    swapped = true;
-                }
-            }
-            start = start + 1;
+            arreglo[j + 1] = selected;
         }
     }
 
-    private static void imprimirNumOrdenados(int[] arreglo) {
-        System.out.println("\nArreglo ordenado de forma creciente\n");
-        for(int i=0;i< arreglo.length;i++){
-            System.out.print(" - " + arreglo[i]);
+    static int binarySearch(double[] arreglo, double selected, int low, int j) {
+        while (low <= j) {
+            int mid = low + (j - low) / 2;
+            if (j == arreglo[mid])
+                return mid + 1;
+            else if (selected > arreglo[mid])
+                low = mid + 1;
+            else
+                j = mid - 1;
         }
+
+        return low;
     }
 }
