@@ -6,8 +6,8 @@ public class matrizImpar {
         int[][] matriz = new int[n][n]; // Declaración de la matriz
 
         // Llenado de la matriz
-        for (int i = 0; i < matriz.length; i++) {
-            for (int j = 0; j < matriz.length; j++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
                 if (i < n / 2) {
                     if (j >= i && j < n - i) {
                         matriz[j][i] = 1;
