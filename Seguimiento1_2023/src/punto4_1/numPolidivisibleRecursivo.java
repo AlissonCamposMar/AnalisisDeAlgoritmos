@@ -4,10 +4,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author Alisson Campos Marin (grupo N)
+ * @author Cristhian Andrés Miranda Ramirez (grupo D)
+ * @author Diego Alejandro Vera Gonzaléz (grupo D)
+ */
 public class numPolidivisibleRecursivo {
+    public static void main(String[] args) {
+        int[][] matrix = {{123, 24, 36}, {80, 42, 63}, {2016, 4233}};
+        int[] polyDivisibleNumbers = findPolyDivisibleNumbers(matrix, 0, 0, new ArrayList<>());
+        // Imprimir el resultado en la consola
+        System.out.println(Arrays.toString(polyDivisibleNumbers));
+    }
 
     /**
-     * @param n
+     * @param n dato a comprobar
      * Método que comprueba si un número es polidivisible
      */
     public static boolean isPolyDivisible(int n, int divisor) {
@@ -21,7 +32,15 @@ public class numPolidivisibleRecursivo {
         return isPolyDivisible(n / 10, divisor - 1);
     }
 
-    // Método para encontrar números polidivisibles en una matriz
+    /**
+     * Método para encontrar números polidivisibles en una matriz
+     *
+     * @param matrix
+     * @param row
+     * @param col
+     * @param resultList
+     * @return
+     */
     public static int[] findPolyDivisibleNumbers(int[][] matrix, int row, int col, List<Integer> resultList) {
 
         if (row == matrix.length) { // Caso base: se han revisado todas las filas
@@ -45,13 +64,6 @@ public class numPolidivisibleRecursivo {
         }
         // Llamada recursiva para revisar el siguiente número en la misma fila (col + 1)
         return findPolyDivisibleNumbers(matrix, row, col + 1, resultList);
-    }
-
-    public static void main(String[] args) {
-        int[][] matrix = {{123, 24, 36}, {80, 42, 63}, {2016, 4233}};
-        int[] polyDivisibleNumbers = findPolyDivisibleNumbers(matrix, 0, 0, new ArrayList<>());
-        // Imprimir el resultado en la consola
-        System.out.println(Arrays.toString(polyDivisibleNumbers));
     }
 
 }

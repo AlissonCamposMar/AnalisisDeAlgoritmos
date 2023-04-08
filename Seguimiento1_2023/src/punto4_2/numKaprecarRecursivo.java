@@ -1,35 +1,58 @@
 package punto4_2;
 
+/**
+ * @author Alisson Campos Marin (grupo N)
+ * @author Cristhian Andrés Miranda Ramirez (grupo D)
+ * @author Diego Alejandro Vera Gonzaléz (grupo D)
+ */
 public class numKaprecarRecursivo {
     public static void main(String[] args) {
         int numero = 703;
+        double duracionEnSegundos;
         boolean esKaprekarRecursivo;
-        long tiempoEjecucionRecursivo, startTime, endTime;
+        long tiempoEjecucion, startTime, endTime;
 
         startTime = System.nanoTime();
-        esKaprekarRecursivo = numeroKaprekarRecursivo(numero, 0, 0, 0);
-        endTime = System.nanoTime();
-        tiempoEjecucionRecursivo = endTime - startTime;
-        System.out.println("Tiempo recursivo: "+tiempoEjecucionRecursivo+" Nanosegundos");
+        esKaprekarRecursivo = numeroKaprekarRecursivo(numero);
 
         if (esKaprekarRecursivo == true) {
-            System.out.println("Sí es Kaprekar");
+            System.out.println(numero + " Sí es Kaprekar");
         }else{
-            System.out.println("No es Kaprekar");
+            System.out.println(numero + " No es Kaprekar");
         }
+
+        endTime = System.nanoTime();
+        tiempoEjecucion = endTime - startTime;
+        duracionEnSegundos = (double) tiempoEjecucion / 1000000000.0; // Convertir la duración a segundos
+
+        // Imprimir el resultado en la consola
+        System.out.println("Tiempo de ejecución: " + duracionEnSegundos + " segundos");
+
     }
-    private static boolean numeroKaprekarRecursivo(int numero, int potencia, int aux, int numeroDigitos) {
-        long square = (long) numero * numero;
-        String strSquare = String.valueOf(square);
+
+    /**
+     * Método que comprueba si un número es kaprekar
+     * @param numero dato comprobar
+     * @return
+     */
+    private static boolean numeroKaprekarRecursivo(int numero) {
+        long cuadrado = (long) numero * numero;
+        String cadena = String.valueOf(cuadrado);
 
         // Si el número de dígitos es impar, agregamos un 0 al principio
-        if (strSquare.length() % 2 != 0) {
-            strSquare = "0" + strSquare;
+        if (cadena.length() % 2 != 0) {
+            cadena = "0" + cadena;
         }
 
-        return numeroKaprekarRecursivoAux(strSquare, numero);
+        return numeroKaprekarRecursivoAux(cadena, numero);
     }
 
+    /**
+     * Método para la comprobación del número kaprekar, para mayor eficiencia del algoritmo
+     * @param strSquare
+     * @param numero
+     * @return
+     */
     private static boolean numeroKaprekarRecursivoAux(String strSquare, int numero) {
         if (strSquare.length() <= 1) {
             return false;

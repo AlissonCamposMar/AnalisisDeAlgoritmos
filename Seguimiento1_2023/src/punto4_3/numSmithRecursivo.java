@@ -1,15 +1,33 @@
 package punto4_3;
 
 import java.util.ArrayList;
-
+/**
+ * @author Alisson Campos Marin (grupo N)
+ * @author Cristhian Andrés Miranda Ramirez (grupo D)
+ * @author Diego Alejandro Vera Gonzaléz (grupo D)
+ */
 public class numSmithRecursivo {
     public static void main(String[] args) {
         int numero = 9;
-        if (esNumeroSmithRecursivo(numero)) {
+        boolean esSmith;
+        double duracionEnSegundos;
+        long tiempoEjecucion, startTime, endTime;
+
+        startTime = System.nanoTime();
+        esSmith = esNumeroSmithRecursivo(numero);
+
+        if (esSmith == true) {
             System.out.println(numero + " es un número Smith");
         } else {
             System.out.println(numero + " no es un número Smith");
         }
+
+        endTime = System.nanoTime();
+
+        tiempoEjecucion = endTime - startTime;
+        duracionEnSegundos = (double) tiempoEjecucion / 1000000000.0;
+        System.out.println("Tiempo iterativo: "+duracionEnSegundos+" segundos");
+
     }
 
     /**
@@ -61,8 +79,8 @@ public class numSmithRecursivo {
     /**
      * Función para sumar los dígitos de una lista de números
      *
-     * @param lista
-     * @return
+     * @param lista Se recorre cada elemento de la lista
+     * @return Se retorna la suma de los dígitos de cada elemento
      */
     public static int sumaDigitosLista(ArrayList<Integer> lista) {
         int suma = 0;

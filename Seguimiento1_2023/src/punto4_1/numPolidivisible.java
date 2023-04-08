@@ -4,33 +4,39 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author Alisson Campos Marin (grupo N)
+ * @author Cristhian Andrés Miranda Ramirez (grupo D)
+ * @author Diego Alejandro Vera Gonzaléz (grupo D)
+ */
 public class numPolidivisible {
     public static void main(String[] args) {
         int[][] matrix = {{123, 24, 36}, {80, 42, 63}, {2016}};
         double duracionEnSegundos;
-        long startTime, endTime, duration;
+        long startTime, endTime, tiempoEjecucion;
 
         startTime = System.nanoTime(); // Medir el tiempo de inicio
         int[] polyDivisibleNumbers = findPolyDivisibleNumbers(matrix);
+
         // Imprimir el resultado en la consola
         System.out.println(Arrays.toString(polyDivisibleNumbers));
         endTime = System.nanoTime(); // Medir el tiempo de finalización
 
-        duration = (endTime - startTime); // Calcular la duración de la ejecución en nanosegundos
-        duracionEnSegundos = (double) duration / 1000000000.0; // Convertir la duración a segundos
+        tiempoEjecucion = endTime - startTime; // Calcular la duración de la ejecución en nanosegundos
+        duracionEnSegundos = (double) tiempoEjecucion / 1000000000.0; // Convertir la duración a segundos
 
-// Imprimir el resultado en la consola
+        // Imprimir el resultado en la consola
         System.out.println("Tiempo de ejecución: " + duracionEnSegundos + " segundos");
     }
 
     /**
-     * @param n
+     * @param n dato a comrobar
      * Método que comprueba si un número es polidivisible
      */
     public static boolean isPolyDivisible(int n) {
         String x = Integer.toString(n); //el valor recibido por parámetro se convierte a String y se almacena en la variable x...
         int divisor = x.length();       //...el tamaño del string se almacena en la variable int divisor que servirá como contador...
-        //....para ir desde el último dígito hasta el primero
+                                        //....para ir desde el último dígito hasta el primero
 
         while (n > 0) { // Mientras queden dígitos por comprobar...
 
@@ -44,7 +50,11 @@ public class numPolidivisible {
         return true; //sí todo lo anterior fue exitoso entonces retornara true
     }
 
-    // Método para encontrar números polidivisibles en una matriz
+    /**
+     * Método para encontrar números polidivisibles en una matriz
+     * @param matrix
+     * @return
+     */
     public static int[] findPolyDivisibleNumbers(int[][] matrix) {
         // Se crea una lista para almacenar los resultados
         List<Integer> resultList = new ArrayList<>();
