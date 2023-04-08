@@ -5,6 +5,23 @@ import java.util.Arrays;
 import java.util.List;
 
 public class numPolidivisible {
+    public static void main(String[] args) {
+        int[][] matrix = {{123, 24, 36}, {80, 42, 63}, {2016}};
+        double duracionEnSegundos;
+        long startTime, endTime, duration;
+
+        startTime = System.nanoTime(); // Medir el tiempo de inicio
+        int[] polyDivisibleNumbers = findPolyDivisibleNumbers(matrix);
+        // Imprimir el resultado en la consola
+        System.out.println(Arrays.toString(polyDivisibleNumbers));
+        endTime = System.nanoTime(); // Medir el tiempo de finalización
+
+        duration = (endTime - startTime); // Calcular la duración de la ejecución en nanosegundos
+        duracionEnSegundos = (double) duration / 1000000000.0; // Convertir la duración a segundos
+
+// Imprimir el resultado en la consola
+        System.out.println("Tiempo de ejecución: " + duracionEnSegundos + " segundos");
+    }
 
     /**
      * @param n
@@ -52,13 +69,6 @@ public class numPolidivisible {
             resultArray[i] = resultList.get(i);
         }
         return resultArray;
-    }
-
-    public static void main(String[] args) {
-        int[][] matrix = {{123, 24, 36}, {80, 42, 63}, {2016}};
-        int[] polyDivisibleNumbers = findPolyDivisibleNumbers(matrix);
-        // Imprimir el resultado en la consola
-        System.out.println(Arrays.toString(polyDivisibleNumbers));
     }
 
 }
