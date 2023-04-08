@@ -8,7 +8,7 @@ public class matrizImpar {
         // Llenado de la matriz
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz.length; j++) {
-                if (i < n / 3) {
+                if (i < n / 2) {
                     if (j >= i && j < n - i) {
                         matriz[j][i] = 1;
                     }
