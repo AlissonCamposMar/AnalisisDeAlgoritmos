@@ -1,4 +1,4 @@
-package punto4_2;
+package Punto4.punto4_2;
 
 public class NumeroKaprekar {
 

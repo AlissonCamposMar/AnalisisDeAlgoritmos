@@ -1,4 +1,4 @@
-package punto4_4;
+package Punto4.punto4_4;
 
 /**
  * @author Alisson Campos Marin (grupo N)
