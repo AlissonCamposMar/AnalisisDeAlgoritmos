@@ -1,8 +1,9 @@
-package Punto4.punto4_1;
+package punto4_1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * @author Alisson Campos Marin (grupo N)
@@ -11,12 +12,24 @@ import java.util.List;
  */
 public class numPolidivisible {
     public static void main(String[] args) {
-        int[][] matrix = {{123, 24, 36}, {80, 42, 63}, {2016}};
+
         double duracionEnSegundos;
         long startTime, endTime, tiempoEjecucion;
 
+        System.out.println("ingrese el tamaño de la matriz");
+        Scanner tamText =  new Scanner(System.in);
+        int tam = tamText.nextInt();
+        int[][] matriz = new int[tam][tam];
+
         startTime = System.nanoTime(); // Medir el tiempo de inicio
-        int[] polyDivisibleNumbers = findPolyDivisibleNumbers(matrix);
+        int[] polyDivisibleNumbers = findPolyDivisibleNumbers(matriz);
+
+        for (int x=0; x < matriz.length; x++) {
+            for (int y=0; y < matriz[x].length; y++) {
+                System.out.println("Introduzca el elemento [" + x + "," + y + "]");
+                matriz[x][y] = tamText.nextInt();
+            }
+        }
 
         // Imprimir el resultado en la consola
         System.out.println(Arrays.toString(polyDivisibleNumbers));

@@ -1,8 +1,9 @@
-package Punto4.punto4_1;
+package punto4_1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * @author Alisson Campos Marin (grupo N)
@@ -11,10 +12,36 @@ import java.util.List;
  */
 public class numPolidivisibleRecursivo {
     public static void main(String[] args) {
-        int[][] matrix = {{123, 24, 36}, {80, 42, 63}, {2016, 4233}};
-        int[] polyDivisibleNumbers = findPolyDivisibleNumbers(matrix, 0, 0, new ArrayList<>());
+
+        double duracionEnSegundos;
+        long startTime, endTime, tiempoEjecucion;
+
+        System.out.println("ingrese el tamaño de la matriz");
+        Scanner tamText =  new Scanner(System.in);
+        int tam = tamText.nextInt();
+        int[][] matriz = new int[tam][tam];
+        startTime = System.nanoTime(); // Medir el tiempo de inicio
+
+        for (int x=0; x < matriz.length; x++) {
+            for (int y=0; y < matriz[x].length; y++) {
+                System.out.println("Introduzca el elemento [" + x + "," + y + "]");
+                matriz[x][y] = tamText.nextInt();
+            }
+        }
+
+
+        int[] polyDivisibleNumbers = findPolyDivisibleNumbers(matriz, 0, 0, new ArrayList<>());
         // Imprimir el resultado en la consola
         System.out.println(Arrays.toString(polyDivisibleNumbers));
+
+        endTime = System.nanoTime(); // Medir el tiempo de finalización
+
+        tiempoEjecucion = endTime - startTime; // Calcular la duración de la ejecución en nanosegundos
+        duracionEnSegundos = (double) tiempoEjecucion / 1000000000.0; // Convertir la duración a segundos
+
+        // Imprimir el resultado en la consola
+        System.out.println("Tiempo de ejecución: " + duracionEnSegundos + " segundos");
+
     }
 
     /**

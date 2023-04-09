@@ -1,6 +1,8 @@
-package Punto4.punto4_3;
+package punto4_3;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  * @author Alisson Campos Marin (grupo N)
  * @author Cristhian Andrés Miranda Ramirez (grupo D)
@@ -9,18 +11,22 @@ import java.util.ArrayList;
 public class numSmith {
 
     public static void main(String[] args) {
-        int numero = 27;
+        //int numero = 27;
         boolean esSmith;
         double duracionEnSegundos;
         long tiempoEjecucion, startTime, endTime;
 
+        System.out.println("Ingrese un número: ");
+        Scanner lectura = new Scanner (System.in);
+        int valor = lectura.nextInt();
+
         startTime = System.nanoTime();
-        esSmith = esNumeroSmith(numero);
+        esSmith = esNumeroSmith(valor);
 
         if (esSmith == true) {
-            System.out.println(numero + " es un número Smith");
+            System.out.println(valor + " es un número Smith");
         } else {
-            System.out.println(numero + " no es un número Smith");
+            System.out.println(valor + " no es un número Smith");
         }
 
         endTime = System.nanoTime();

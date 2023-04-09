@@ -1,4 +1,6 @@
-package Punto4.punto4_4;
+package punto4_4;
+
+import java.util.Scanner;
 
 /**
  * @author Alisson Campos Marin (grupo N)
@@ -8,16 +10,29 @@ package Punto4.punto4_4;
 public class matrizImparRecursivo {
     public static void main(String[] args) {
 
-        int n = 5; // Tamaño de la matriz
-        int[][] matriz = new int[n][n]; // Declaración de la matriz
+        //int n = 5; // Tamaño de la matriz
+        //int[][] matriz = new int[n][n]; // Declaración de la matriz
 
         double duracionEnSegundos;
         long startTime, endTime, duration;
 
+        System.out.println("Ingrese un número impar: ");
+        Scanner lectura = new Scanner (System.in);
+        int valor = lectura.nextInt();
+
+        while (valor % 2 == 0){
+            System.out.println("no es impar, vuelva a ingresarlo: ");
+            lectura = new Scanner (System.in);
+            valor = lectura.nextInt();
+
+        }
+
+        int[][] matriz = new int[valor][valor];
+
         startTime = System.nanoTime(); // Medir el tiempo de inicio
 
-        llenarMatrizRecursivo(matriz, n, 0, 0);
-        imprimirMatriz(matriz, n, 0, 0);
+        llenarMatrizRecursivo(matriz, valor, 0, 0);
+        imprimirMatriz(matriz, valor, 0, 0);
 
         endTime = System.nanoTime(); // Medir el tiempo de finalización
 
