@@ -49,28 +49,30 @@ public class numKaprecarRecursivo {
 
     /**
      * Método para la comprobación del número kaprekar, para mayor eficiencia del algoritmo
-     * @param strSquare
+     * @param cadena
      * @param numero
      * @return
+     *
+     *              ORDEN DE COMPLEJIDAD O(N)
      */
-    private static boolean numeroKaprekarRecursivoAux(String strSquare, int numero) {
-        if (strSquare.length() <= 1) {
+    private static boolean numeroKaprekarRecursivoAux(String cadena, int numero) {
+        if (cadena.length() <= 1) {
             return false;
         } else {
             // Dividimos la cadena en dos partes iguales en el punto medio
-            int midpoint = strSquare.length() / 2;
-            String strLeft = strSquare.substring(0, midpoint);
-            String strRight = strSquare.substring(midpoint);
+            int puntoMedio = cadena.length() / 2;
+            String strIzquierda = cadena.substring(0, puntoMedio);
+            String strDerecha = cadena.substring(puntoMedio);
 
             // Convertimos las dos partes en números enteros
-            int left = Integer.parseInt(strLeft);
-            int right = Integer.parseInt(strRight);
+            int izquierda = Integer.parseInt(strIzquierda);
+            int derecha = Integer.parseInt(strDerecha);
 
             // Verificamos si la suma es igual al número original
-            if (left + right == numero) {
+            if (izquierda + derecha == numero) {
                 return true;
             } else {
-                return numeroKaprekarRecursivoAux(strLeft, numero) || numeroKaprekarRecursivoAux(strRight, numero);
+                return numeroKaprekarRecursivoAux(strIzquierda, numero) || numeroKaprekarRecursivoAux(strDerecha, numero);
             }
         }
     }

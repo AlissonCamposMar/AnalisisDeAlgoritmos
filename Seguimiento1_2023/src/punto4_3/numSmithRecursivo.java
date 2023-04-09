@@ -48,6 +48,8 @@ public class numSmithRecursivo {
      *
      * @param numero el número del cual se sumarán los dígitos
      * @return la suma de los dígitos del número
+     *
+     * ORDEN DE COMPLEJIDAD O(LOG(N))
      */
     public static int sumarDigitos(int numero) {
         if (numero < 10) {

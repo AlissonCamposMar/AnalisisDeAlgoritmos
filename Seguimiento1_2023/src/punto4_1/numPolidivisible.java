@@ -32,6 +32,8 @@ public class numPolidivisible {
     /**
      * @param n dato a comrobar
      * Método que comprueba si un número es polidivisible
+     *
+     *             ORDEN DE COMPLEJIDAD O(LOG(N))
      */
     public static boolean isPolyDivisible(int n) {
         String x = Integer.toString(n); //el valor recibido por parámetro se convierte a String y se almacena en la variable x...

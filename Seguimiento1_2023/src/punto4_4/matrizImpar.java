@@ -48,6 +48,8 @@ public class matrizImpar {
      * Método que llena una matriz de n*n con n impar
      * @param matriz
      * @param n
+     *
+     * ORDEN DE COMPLEJIDAD O(N^2)
      */
     private static void llenarMatriz(int[][] matriz, int n) {
         // Llenado de la matriz

@@ -34,6 +34,8 @@ public class numKaprekar {
 	 * Método que comprueba si un número es kaprekar
 	 * @param numero dato a comprobar
 	 * @return
+	 *
+	 * 		ORDEN DE COMPLEJIDAD O(N)
 	 */
 	private static boolean numeroKaprekarIterativo(int numero) {
 		long cuadrado = (long) numero * numero; //eleva el número al cuadrado

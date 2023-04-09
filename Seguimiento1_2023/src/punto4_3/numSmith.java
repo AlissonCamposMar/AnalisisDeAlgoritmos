@@ -36,6 +36,8 @@ public class numSmith {
      *
      * @param numero el número a comprobar
      * @return la comparación de la suma de dígitos del número original con la suma de dígitos de los factores primos
+     *
+     * ORDEN DE COMPLEJIDAD O(NLOG(N))
      */
     private static boolean esNumeroSmith(int numero) {
         int sumaDigitosOriginal = sumarDigitos(numero); // Se calcula la suma de los dígitos del número original

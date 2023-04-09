@@ -20,6 +20,8 @@ public class numPolidivisibleRecursivo {
     /**
      * @param n dato a comprobar
      * Método que comprueba si un número es polidivisible
+     *
+     *          ORDEN DE COMPLEJIDAD O(LOG(N))
      */
     public static boolean isPolyDivisible(int n, int divisor) {
         if (n == 0) { // Caso base: no quedan dígitos por comprobar

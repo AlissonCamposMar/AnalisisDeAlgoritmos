@@ -56,6 +56,8 @@ public class matrizImparRecursivo {
      * @param n
      * @param i
      * @param j
+     *
+     * ORDEN DE COMPLEJIDAD O(N^2)
      */
     private static void llenarMatrizRecursivo(int[][] matriz, int n, int i, int j) {
         //Base case: si se han completado todas las filas, terminar la
