@@ -1,0 +1,54 @@
+“33456583722”
+
+3--->para comprobación
+
+S1="34565"
+S2="83722"
+
+estructura del código E-11 es 1-5-5 que corresponde a: 3 - 34565 - 83722
+
+comprobacion= primer numero del codigo (3);
+
+sumaS1=verificarcodigo(S1, i, sumaAux);
+sumaS2=verificarcodigo(S2, i, sumaAux);
+sumaAux=0;
+i=0;
+divisor = 2;
+
+if(sumaS1>sumaS2){
+
+    sumaS2+=comprobacion;
+    if(numeroPrimo(sumaS2, divisor)==true){
+ 	es un código de barras en formato E-11
+     }
+     if (numeroPrimo(sumaS2, divisor)==false){
+                no es un código de barras en formato E-11
+     }
+} else {
+
+           no es un código de barras en formato E-11
+}
+
+
+///////////////////////////////////////////////
+verificarcodigo(subString, i, sumaAux){
+
+if(i>=s.length()) {
+       return sumaAux;
+} else if (i<=s.length()){
+     int num=subString.
+     
+    else if(num%2==0){ 
+     
+          sumaAux+=num*5;
+    } else {
+          sumaAux+=num*3;
+
+     }
+
+     return verificarCodigo(subString, i+1, sumaAux);
+}
+
+return suma;
+
+}
