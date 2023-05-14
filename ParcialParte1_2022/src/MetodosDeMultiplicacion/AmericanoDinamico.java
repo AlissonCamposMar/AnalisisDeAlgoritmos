@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Aquí se encuentran los métodos de arreglos, recursivo y de ArrayList
  */
-public class MultiplicacionAmericana {
+public class AmericanoDinamico {
     public static void main(String[] args){
         int [] arr1 = {9,9,9,9,9,9,9};
         int [] arr2 = {9,9,9,9,9,9};
@@ -20,7 +20,7 @@ public class MultiplicacionAmericana {
             System.out.print(h + " ");
         System.out.println();
 
-        //multiplicarAmericanoArrayList(arr1, arr2);
+        multiplicarAmericanoArrayList(arr1, arr2);
 
     }
 
@@ -75,13 +75,6 @@ public class MultiplicacionAmericana {
         System.out.println("Resultado");
         for (int i = 0; i< resultado.size(); i++){
             System.out.print(resultado.get(i) + " ");
-        }
-    }
-
-    private static void imprimirResultado(int[] resultado) {
-        System.out.println("Resultado");
-        for (int i = 0; i< resultado.length; i++){
-            System.out.print(resultado[i] + " ");
         }
     }
 
