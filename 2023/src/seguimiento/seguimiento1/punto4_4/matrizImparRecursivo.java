@@ -1,4 +1,4 @@
-package punto4_4;
+package seguimiento.seguimiento1.punto4_4;
 
 import java.util.Scanner;
 

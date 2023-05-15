@@ -1,4 +1,4 @@
-package punto4_2;
+package seguimiento.seguimiento1.punto4_2;
 
 /**
  * @author Alisson Campos Marin (grupo N)

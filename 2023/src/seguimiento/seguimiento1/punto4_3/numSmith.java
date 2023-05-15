@@ -1,4 +1,4 @@
-package punto4_3;
+package seguimiento.seguimiento1.punto4_3;
 
 import java.util.ArrayList;
 import java.util.Scanner;
