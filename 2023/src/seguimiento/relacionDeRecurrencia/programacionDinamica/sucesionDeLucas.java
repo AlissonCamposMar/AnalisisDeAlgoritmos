@@ -1,4 +1,4 @@
-package seguimiento.programacionDinamica;
+package seguimiento.relacionDeRecurrencia.programacionDinamica;
 
 public class sucesionDeLucas {
 
