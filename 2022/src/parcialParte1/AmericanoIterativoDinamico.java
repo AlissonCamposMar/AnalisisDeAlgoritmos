@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Aquí se encuentran los métodos de arreglos, recursivo y de ArrayList
  */
-public class AmericanoDinamico {
+public class AmericanoIterativoDinamico {
     public static void main(String[] args){
         int [] arr1 = {9,9,9,9,9,9,9};
         int [] arr2 = {9,9,9,9,9,9};

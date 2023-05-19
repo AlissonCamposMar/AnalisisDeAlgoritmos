@@ -6,7 +6,7 @@ package parcialParte1;
  *
  * Aquí se encuentran los métodos de arreglos, recursivo y de ArrayList
  */
-public class MultiplicacionIndu {
+public class InduIterativoEstatico {
     public static void main(String[] args){
         int [] arr1 = {5,3,7};
         int [] arr2 = {6,2};
