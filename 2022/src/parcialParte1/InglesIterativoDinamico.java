@@ -2,12 +2,10 @@ package parcialParte1;
 
 import java.util.ArrayList;
 
-/**
- * Aquí se encuentran los métodos de arreglos, recursivo y de ArrayList
- */
-public class AmericanoIterativoDinamico {
+public class InglesIterativoDinamico {
+
     public static void main(String[] args){
-        int [] arr1 = {9,9,9,9,9,9,9};
+        int [] arr1 = {9,9,9,9,9,9,9,9,9};
         int [] arr2 = {9,9,9,9,9,9,9};
 
 
@@ -20,14 +18,14 @@ public class AmericanoIterativoDinamico {
             System.out.print(h + " ");
         System.out.println();
 
-        multiplicarAmericanoArrayList(arr1, arr2);
+        multiplicarInglesArrayList(arr1, arr2);
 
     }
 
+    public static ArrayList<Integer> multiplicarInglesArrayList (int[] arr1, int[] arr2){
 
-    public static ArrayList<Integer> multiplicarAmericanoArrayList(int[] arr1, int[] arr2){
         ArrayList<Integer>resultado = new ArrayList<>();
-        int k;
+        int k = 0;
         int acarreo = 0;
         int longitud = arr1.length + arr2.length;
 
@@ -43,16 +41,11 @@ public class AmericanoIterativoDinamico {
             arr2 = arrAux1;
         }
 
-        //Recorre el arreglo multiplicador desde la última posición
-        System.out.println("tamaño del arraylist: "+resultado.size());
-        for (int i = arr2.length -1; i>=0; i--){
+        //Recorre el arreglo multiplicador desde la primera posición
+        for (int i = 0; i<arr2.length; i++){
+            k  = arr2.length - 1 + i;
+            for (int j = arr1.length-1; j>=0; j--){
 
-            //Verifica a qué tan lejos está del borde derecho de resultado
-            k  = resultado.size() - (arr2.length - i);
-            //Recorre el arreglo multiplicando desde la última posición
-            for (int j = arr1.length - 1; j >= 0; j--) {
-
-                //Realiza la multiplicación y suma sobre el resultado anterior
                 resultado.set(k, arr1[j] * arr2[i] + acarreo + resultado.get(k));
 
                 if(resultado.get(k)>=10){
@@ -63,9 +56,18 @@ public class AmericanoIterativoDinamico {
                 }
                 k--;
             }
-            resultado.set(k, acarreo);
-            //resultado[k]=acarreo;
-            acarreo=0;
+            if(acarreo != 0){
+                resultado.set(k, acarreo + resultado.get(k));
+                // resultado[k] += acarreo;
+                if(resultado.get(k)>=10){
+                    acarreo = resultado.get(k)/10;
+                    resultado.set(k, resultado.get(k)%10);
+                    resultado.set(k-1, acarreo + resultado.get(k));
+                    //resultado[k - 1] += acarreo;
+                }
+                acarreo = 0;
+            }
+
         }
         imprimirResultadoArrayList(resultado);
         return resultado;
@@ -77,8 +79,4 @@ public class AmericanoIterativoDinamico {
             System.out.print(resultado.get(i) + " ");
         }
     }
-
-
 }
-
-
