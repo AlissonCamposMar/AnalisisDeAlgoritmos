@@ -10,8 +10,23 @@ public class AmericanoIterativoDinamico {
 
     public static void main(String[] args){
 
-        BigInteger[] arr1 = {BigInteger.valueOf(9), BigInteger.valueOf(9), BigInteger.valueOf(9), BigInteger.valueOf(9), BigInteger.valueOf(9), BigInteger.valueOf(9), BigInteger.valueOf(9)};
-        BigInteger[] arr2 = {BigInteger.valueOf(9), BigInteger.valueOf(9), BigInteger.valueOf(9), BigInteger.valueOf(9), BigInteger.valueOf(9), BigInteger.valueOf(9), BigInteger.valueOf(9)};
+        ArrayList<BigInteger> arr1 = new ArrayList<>();
+        arr1.add(BigInteger.valueOf(9));
+        arr1.add(BigInteger.valueOf(9));
+        arr1.add(BigInteger.valueOf(9));
+        arr1.add(BigInteger.valueOf(9));
+        arr1.add(BigInteger.valueOf(9));
+        arr1.add(BigInteger.valueOf(9));
+        arr1.add(BigInteger.valueOf(9));
+
+        ArrayList<BigInteger> arr2 = new ArrayList<>();
+        arr2.add(BigInteger.valueOf(9));
+        arr2.add(BigInteger.valueOf(9));
+        arr2.add(BigInteger.valueOf(9));
+        arr2.add(BigInteger.valueOf(9));
+        arr2.add(BigInteger.valueOf(9));
+        arr2.add(BigInteger.valueOf(9));
+        arr2.add(BigInteger.valueOf(9));
 
         System.out.println("Arreglo multiplicando");
         for(BigInteger l: arr1)
@@ -27,11 +42,11 @@ public class AmericanoIterativoDinamico {
     }
 
 
-    public static ArrayList<BigInteger> multiplicarAmericanoArrayList(BigInteger[] arr1, BigInteger[] arr2){
+    public static ArrayList<BigInteger> multiplicarAmericanoArrayList(ArrayList<BigInteger> arr1, ArrayList<BigInteger> arr2){
         ArrayList<BigInteger>resultado = new ArrayList<>();
         BigInteger k;
         BigInteger acarreo = BigInteger.ZERO;
-        int longitud = arr1.length + arr2.length;
+        int longitud = arr1.size() + arr2.size();
 
         for(int i = 0; i< longitud; i++){
             resultado.add(BigInteger.ZERO);
@@ -39,23 +54,23 @@ public class AmericanoIterativoDinamico {
 
         System.out.print("\n");
 
-        if(arr1.length > arr2.length){
-            BigInteger[] arrAux1 = arr1;
+        if(arr1.size() > arr2.size()){
+            ArrayList<BigInteger> arrAux1 = arr1;
             arr1 = arr2;
             arr2 = arrAux1;
         }
 
         //Recorre el arreglo multiplicador desde la última posición
         System.out.println("Tamanio del Arraylist Resultado: "+resultado.size());
-        for (int i = arr2.length -1; i>=0; i--){
+        for (int i = arr2.size() - 1; i >= 0; i--){
 
             //Verifica a qué tan lejos está del borde derecho de resultado
-            k  = BigInteger.valueOf(resultado.size() - (arr2.length - i));
+            k = BigInteger.valueOf(resultado.size() - (arr2.size() - i));
             //Recorre el arreglo multiplicando desde la última posición
-            for (int j = arr1.length - 1; j >= 0; j--) {
+            for (int j = arr1.size() - 1; j >= 0; j--) {
 
                 //Realiza la multiplicación y suma sobre el resultado anterior
-                resultado.set(k.intValue(), arr1[j].multiply(arr2[i]).add(acarreo).add(resultado.get(k.intValue())));
+                resultado.set(k.intValue(), arr1.get(j).multiply(arr2.get(i)).add(acarreo).add(resultado.get(k.intValue())));
 
                 if(resultado.get(k.intValue()).compareTo(BigInteger.TEN) >= 0){
                     acarreo = resultado.get(k.intValue()).divide(BigInteger.TEN);
