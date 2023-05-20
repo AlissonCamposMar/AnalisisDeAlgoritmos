@@ -1,22 +1,24 @@
 package parcialParte1;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 /**
  * Aquí se encuentran los métodos de arreglos, recursivo y de ArrayList
  */
 public class AmericanoIterativoDinamico {
-    public static void main(String[] args){
-        int [] arr1 = {9,9,9,9,9,9,9};
-        int [] arr2 = {9,9,9,9,9,9,9};
 
+    public static void main(String[] args){
+
+        BigInteger[] arr1 = {BigInteger.valueOf(9), BigInteger.valueOf(9), BigInteger.valueOf(9), BigInteger.valueOf(9), BigInteger.valueOf(9), BigInteger.valueOf(9), BigInteger.valueOf(9)};
+        BigInteger[] arr2 = {BigInteger.valueOf(9), BigInteger.valueOf(9), BigInteger.valueOf(9), BigInteger.valueOf(9), BigInteger.valueOf(9), BigInteger.valueOf(9), BigInteger.valueOf(9)};
 
         System.out.println("Arreglo multiplicando");
-        for(int l: arr1)
+        for(BigInteger l: arr1)
             System.out.print(l + " ");
 
         System.out.println("\nArreglo multiplicador");
-        for (int h : arr2)
+        for (BigInteger h : arr2)
             System.out.print(h + " ");
         System.out.println();
 
@@ -25,57 +27,58 @@ public class AmericanoIterativoDinamico {
     }
 
 
-    public static ArrayList<Integer> multiplicarAmericanoArrayList(int[] arr1, int[] arr2){
-        ArrayList<Integer>resultado = new ArrayList<>();
-        int k;
-        int acarreo = 0;
+    public static ArrayList<BigInteger> multiplicarAmericanoArrayList(BigInteger[] arr1, BigInteger[] arr2){
+        ArrayList<BigInteger>resultado = new ArrayList<>();
+        BigInteger k;
+        BigInteger acarreo = BigInteger.ZERO;
         int longitud = arr1.length + arr2.length;
 
         for(int i = 0; i< longitud; i++){
-            resultado.add(0);
+            resultado.add(BigInteger.ZERO);
         }
 
         System.out.print("\n");
 
         if(arr1.length > arr2.length){
-            int [] arrAux1 = arr1;
+            BigInteger[] arrAux1 = arr1;
             arr1 = arr2;
             arr2 = arrAux1;
         }
 
         //Recorre el arreglo multiplicador desde la última posición
-        System.out.println("tamaño del arraylist: "+resultado.size());
+        System.out.println("Tamanio del Arraylist Resultado: "+resultado.size());
         for (int i = arr2.length -1; i>=0; i--){
 
             //Verifica a qué tan lejos está del borde derecho de resultado
-            k  = resultado.size() - (arr2.length - i);
+            k  = BigInteger.valueOf(resultado.size() - (arr2.length - i));
             //Recorre el arreglo multiplicando desde la última posición
             for (int j = arr1.length - 1; j >= 0; j--) {
 
                 //Realiza la multiplicación y suma sobre el resultado anterior
-                resultado.set(k, arr1[j] * arr2[i] + acarreo + resultado.get(k));
+                resultado.set(k.intValue(), arr1[j].multiply(arr2[i]).add(acarreo).add(resultado.get(k.intValue())));
 
-                if(resultado.get(k)>=10){
-                    acarreo = resultado.get(k)/10;
-                    resultado.set(k, resultado.get(k)%10);
+                if(resultado.get(k.intValue()).compareTo(BigInteger.TEN) >= 0){
+                    acarreo = resultado.get(k.intValue()).divide(BigInteger.TEN);
+                    resultado.set(k.intValue(), resultado.get(k.intValue()).mod(BigInteger.TEN));
                 } else {
-                    acarreo = 0;
+                    acarreo = BigInteger.ZERO;
                 }
-                k--;
+                k = k.subtract(BigInteger.ONE);
             }
-            resultado.set(k, acarreo);
+            resultado.set(k.intValue(), acarreo);
             //resultado[k]=acarreo;
-            acarreo=0;
+            acarreo = BigInteger.ZERO;
         }
         imprimirResultadoArrayList(resultado);
         return resultado;
     }
 
-    private static void imprimirResultadoArrayList(ArrayList<Integer> resultado) {
-        System.out.println("Resultado");
-        for (int i = 0; i< resultado.size(); i++){
-            System.out.print(resultado.get(i) + " ");
+    private static void imprimirResultadoArrayList(ArrayList<BigInteger> resultado) {
+        System.out.println("\nResultado:");
+        for (BigInteger value : resultado) {
+            System.out.print(value + " ");
         }
+        System.out.println();
     }
 
 
