@@ -8,9 +8,8 @@ package parcialParte1;
  */
 public class InduIterativoEstatico {
     public static void main(String[] args){
-        int [] arr1 = {5,3,7};
-        int [] arr2 = {6,2};
-
+        int [] arr1 = {9,9,9,9,9,9,9};
+        int [] arr2 = {9,9,9,9,9,9};
 
         System.out.println("Arreglo multiplicando");
         for(int l: arr1)
