@@ -1,6 +1,6 @@
 package parcialParte1;
 
-public class MultiplicacionRusa {
+public class RusaIterativaDinamica {
     public static void main(String[] args){
 
     }
