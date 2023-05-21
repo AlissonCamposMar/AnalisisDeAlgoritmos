@@ -1,18 +1,27 @@
 package parcialParte1;
 
+import java.math.BigInteger;
+
 public class AmericanoIterativoEstatico {
 
     public static void main(String[] args){
-        int [] arr1 = {9,9,9,9,9,9,9};
-        int [] arr2 = {9,9,9,9,9,9};
+        BigInteger[] arr1 = {BigInteger.valueOf(9),
+                BigInteger.valueOf(9), BigInteger.valueOf(9),
+                BigInteger.valueOf(9), BigInteger.valueOf(9),
+                BigInteger.valueOf(9), BigInteger.valueOf(9)};
+
+        BigInteger[] arr2 = {BigInteger.valueOf(9),
+                BigInteger.valueOf(9), BigInteger.valueOf(9),
+                BigInteger.valueOf(9), BigInteger.valueOf(9),
+                BigInteger.valueOf(9), BigInteger.valueOf(9)};
 
 
         System.out.println("Arreglo multiplicando");
-        for(int l: arr1)
+        for(BigInteger l: arr1)
             System.out.print(l + " ");
 
         System.out.println("\nArreglo multiplicador");
-        for (int h : arr2)
+        for (BigInteger h : arr2)
             System.out.print(h + " ");
         System.out.println();
 
@@ -20,15 +29,21 @@ public class AmericanoIterativoEstatico {
 
     }
 
-    private static int[] multiplicarAmericano(int[] arr1, int[] arr2) {
-        int []resultado = new int[arr1.length+ arr2.length];
+    private static BigInteger[] multiplicarAmericano(BigInteger[] arr1, BigInteger[] arr2) {
+
+        BigInteger[] resultado = new BigInteger[arr1.length+ arr2.length];
         int k;
-        int acarreo = 0;
+        BigInteger acarreo = BigInteger.ZERO;
+
+
+        for (int i = 0; i < resultado.length; i++) {
+            resultado[i] = BigInteger.ZERO;
+        }
 
         System.out.print("\n");
 
         if(arr1.length > arr2.length){
-            int [] arrAux1 = arr1;
+            BigInteger[] arrAux1 = arr1;
             arr1 = arr2;
             arr2 = arrAux1;
         }
@@ -41,30 +56,29 @@ public class AmericanoIterativoEstatico {
             for (int j = arr1.length - 1; j >= 0; j--) {
 
                 //Realiza la multiplicación y suma sobre el resultado anterior
-                resultado[k] += arr1[j] * arr2[i] + acarreo;
-
+                resultado[k] = resultado[k].add(arr1[j].multiply(arr2[i])).add(acarreo);
                 /**Condición que verifica si el resultado es igual o mayor a 10
                  * Para indicar que se acumula en el acarreo y que queda almacenado en la posicion [k]
                  * Ejem: 24/10 = 2--->acarreo(lo que se va a sumar en la siguiente multiplicación)
                  * 24%10 = 4 ---> resultado[k]
                  */
-                if(resultado[k]>=10){
-                    acarreo = resultado[k]/10;
-                    resultado[k] = resultado[k]%10;
+                if (resultado[k].compareTo(BigInteger.TEN) >= 0) {
+                    acarreo = resultado[k].divide(BigInteger.TEN);
+                    resultado[k] = resultado[k].mod(BigInteger.TEN);
                 } else {
-                    acarreo = 0;
+                    acarreo = BigInteger.ZERO;
                 }
 
                 k--;
             }
             resultado[k]=acarreo;
-            acarreo=0;
+            acarreo = BigInteger.ZERO;
         }
         imprimirResultado(resultado);
         return resultado;
     }
 
-    private static void imprimirResultado(int[] resultado) {
+    private static void imprimirResultado(BigInteger[] resultado) {
         System.out.println("Resultado");
         for (int i = 0; i< resultado.length; i++){
             System.out.print(resultado[i] + " ");
