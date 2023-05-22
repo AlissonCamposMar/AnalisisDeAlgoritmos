@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /*
  * CON ERROR
  */
-public class AmericanoRecursivoDinamico {
+public class _4_AmericanoRecursivoDinamicoERROR {
 
     public static void main(String[] args) {
         ArrayList<BigInteger> arr1 = new ArrayList<>();
@@ -72,8 +72,8 @@ public class AmericanoRecursivoDinamico {
     }
 
     private static void multiplicacionAmericanoRecursivo(ArrayList<BigInteger> arr1, ArrayList<BigInteger> arr2,
-                                             ArrayList<BigInteger> resultado, BigInteger acarreo,
-                                             BigInteger k) {
+                                                         ArrayList<BigInteger> resultado, BigInteger acarreo,
+                                                         BigInteger k) {
         if (k.compareTo(BigInteger.ZERO) >= 0) {
             int i = arr2.size() - k.intValue() - 1;
             int j = arr1.size() - (resultado.size() - k.intValue()) - 1;
