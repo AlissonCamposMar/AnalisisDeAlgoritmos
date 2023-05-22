@@ -4,13 +4,6 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 
-/**
- * Aquí se encuentran los métodos de arreglos, recursivo y de ArrayList
- */
-
-/*
- * CON ERROR
- */
 public class _4_AmericanoRecursivoDinamico {
 
     public static void main(String[] args) {
@@ -32,8 +25,14 @@ public class _4_AmericanoRecursivoDinamico {
         arrayList2.add(BigInteger.valueOf(9));
         arrayList2.add(BigInteger.valueOf(9));
 
-        System.out.println(arrayList1);
-        System.out.println(arrayList2);
+        System.out.println("Arreglo multiplicando");
+        for(BigInteger l: arrayList1)
+            System.out.print(l + " ");
+
+        System.out.println("\nArreglo multiplicador");
+        for (BigInteger h : arrayList2)
+            System.out.print(h + " ");
+        System.out.println();
 
         multiplicarArrayListRecursivo(arrayList1, arrayList2);
     }
