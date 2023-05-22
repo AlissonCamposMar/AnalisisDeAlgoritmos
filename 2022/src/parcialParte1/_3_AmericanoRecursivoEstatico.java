@@ -36,16 +36,16 @@ public class _3_AmericanoRecursivoEstatico {
 
         BigInteger[] resultado = new BigInteger[arr1.length + arr2.length];
 
+        BigInteger acarreo = BigInteger.ZERO;
+        int i = arr2.length - 1;
+        int j = arr1.length - 1;
+        int k = resultado.length - 1;
+
         if (arr1.length > arr2.length) {
             BigInteger[] arrAux1 = arr1;
             arr1 = arr2;
             arr2 = arrAux1;
         }
-
-        BigInteger acarreo = BigInteger.ZERO;
-        int i = arr2.length - 1;
-        int j = arr1.length - 1;
-        int k = resultado.length - 1;
 
         for (int index = 0; index < resultado.length; index++) {
             resultado[index] = BigInteger.ZERO;
