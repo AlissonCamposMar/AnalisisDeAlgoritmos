@@ -1,20 +1,37 @@
 package parcialParte1;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class _6_InglesIterativoDinamico {
 
     public static void main(String[] args){
-        int [] arr1 = {9,9,9,9,9,9,9,9,9};
-        int [] arr2 = {9,9,9,9,9,9,9};
+        ArrayList<BigInteger> arr1 = new ArrayList<>();
+        arr1.add(BigInteger.valueOf(9));
+        arr1.add(BigInteger.valueOf(9));
+        arr1.add(BigInteger.valueOf(9));
+        arr1.add(BigInteger.valueOf(9));
+        arr1.add(BigInteger.valueOf(9));
+        arr1.add(BigInteger.valueOf(9));
+        arr1.add(BigInteger.valueOf(9));
+
+        ArrayList<BigInteger> arr2 = new ArrayList<>();
+        arr2.add(BigInteger.valueOf(9));
+        arr2.add(BigInteger.valueOf(9));
+        arr2.add(BigInteger.valueOf(9));
+        arr2.add(BigInteger.valueOf(9));
+        arr2.add(BigInteger.valueOf(9));
+        arr2.add(BigInteger.valueOf(9));
+        arr2.add(BigInteger.valueOf(9));
 
 
         System.out.println("Arreglo multiplicando");
-        for(int l: arr1)
+        for(BigInteger l: arr1)
             System.out.print(l + " ");
 
         System.out.println("\nArreglo multiplicador");
-        for (int h : arr2)
+        for (BigInteger h : arr2)
             System.out.print(h + " ");
         System.out.println();
 
@@ -22,58 +39,34 @@ public class _6_InglesIterativoDinamico {
 
     }
 
-    public static ArrayList<Integer> multiplicarInglesArrayList (int[] arr1, int[] arr2){
+    public static ArrayList<BigInteger> multiplicarInglesArrayList (ArrayList<BigInteger> arrayList1, ArrayList<BigInteger> arrayList2) {
 
-        ArrayList<Integer>resultado = new ArrayList<>();
-        int k = 0;
-        int acarreo = 0;
-        int longitud = arr1.length + arr2.length;
+        int longitud = arrayList1.size() + arrayList2.size();
+        ArrayList<BigInteger> resultado = new ArrayList<>(Collections.nCopies(longitud, null));
 
-        for(int i = 0; i< longitud; i++){
-            resultado.add(0);
+        for (int x = 0; x < longitud; x++) {
+            resultado.set(x, BigInteger.ZERO);
         }
 
-        System.out.print("\n");
+        for (int i = 0; i < arrayList2.size(); i++) {
+            for(int j = 0; j < arrayList1.size(); j++) {
+                resultado.set(i + j + 1, resultado.get(i + j + 1).add(arrayList1.get(j).multiply(arrayList2.get(i))));
 
-        if(arr1.length > arr2.length){
-            int [] arrAux1 = arr1;
-            arr1 = arr2;
-            arr2 = arrAux1;
-        }
-
-        //Recorre el arreglo multiplicador desde la primera posición
-        for (int i = 0; i<arr2.length; i++){
-            k  = arr2.length - 1 + i;
-            for (int j = arr1.length-1; j>=0; j--){
-
-                resultado.set(k, arr1[j] * arr2[i] + acarreo + resultado.get(k));
-
-                if(resultado.get(k)>=10){
-                    acarreo = resultado.get(k)/10;
-                    resultado.set(k, resultado.get(k)%10);
-                } else {
-                    acarreo = 0;
-                }
-                k--;
-            }
-            if(acarreo != 0){
-                resultado.set(k, acarreo + resultado.get(k));
-                // resultado[k] += acarreo;
-                if(resultado.get(k)>=10){
-                    acarreo = resultado.get(k)/10;
-                    resultado.set(k, resultado.get(k)%10);
-                    resultado.set(k-1, acarreo + resultado.get(k));
-                    //resultado[k - 1] += acarreo;
-                }
-                acarreo = 0;
             }
 
         }
+        for (int k = longitud-1; k > 0; k--) {
+            resultado.set(k - 1, resultado.get(k - 1).add(resultado.get(k).divide(BigInteger.TEN)));
+            resultado.set(k, resultado.get(k).mod(BigInteger.TEN));
+
+        }
+
         imprimirResultadoArrayList(resultado);
         return resultado;
+
     }
 
-    private static void imprimirResultadoArrayList(ArrayList<Integer> resultado) {
+    private static void imprimirResultadoArrayList(ArrayList<BigInteger> resultado) {
         System.out.println("Resultado");
         for (int i = 0; i< resultado.size(); i++){
             System.out.print(resultado.get(i) + " ");
