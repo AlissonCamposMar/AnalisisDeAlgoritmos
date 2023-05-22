@@ -2,7 +2,7 @@ package parcialParte1;
 
 import java.util.ArrayList;
 
-public class InglesIterativoDinamico {
+public class _6_InglesIterativoDinamico {
 
     public static void main(String[] args){
         int [] arr1 = {9,9,9,9,9,9,9,9,9};

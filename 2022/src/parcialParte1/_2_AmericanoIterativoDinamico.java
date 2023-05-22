@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Aquí se encuentran los métodos de arreglos, recursivo y de ArrayList
  */
-public class AmericanoIterativoDinamico {
+public class _2_AmericanoIterativoDinamico {
 
     public static void main(String[] args){
 

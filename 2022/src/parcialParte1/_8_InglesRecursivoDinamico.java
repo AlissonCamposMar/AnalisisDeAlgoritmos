@@ -6,7 +6,7 @@ package parcialParte1;
  *
  * Aquí se encuentran los métodos de arreglos, recursivo y de ArrayList
  */
-public class InglesRecursivoDinamico {
+public class _8_InglesRecursivoDinamico {
 
     public static void main(String[] args){
         int [] arr1 = {9,9,9,9,9,9,9};

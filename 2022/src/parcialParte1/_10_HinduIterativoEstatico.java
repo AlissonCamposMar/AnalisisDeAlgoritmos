@@ -1,7 +1,7 @@
 package parcialParte1;
 
 
-public class HinduIterativoEstatico {
+public class _10_HinduIterativoEstatico {
 
     public static void main(String[] args){
         int [] arr1 = {9,9,9,9,9,9,9,9,9};

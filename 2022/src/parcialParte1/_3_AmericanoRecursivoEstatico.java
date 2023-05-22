@@ -2,7 +2,7 @@ package parcialParte1;
 
 import java.math.BigInteger;
 
-public class AmericanoRecursivoEstatico {
+public class _3_AmericanoRecursivoEstatico {
 
     public static void main(String[] args){
         BigInteger[] arr1 = {BigInteger.valueOf(9),

@@ -1,6 +1,6 @@
 package parcialParte1;
 
-public class HinduRecursivaEstatico {
+public class _10_HinduRecursivaEstatico {
 
     public static void main(String[] args) {
         int[] arr1 = {9,9,9,9,9,9,9,9,9};

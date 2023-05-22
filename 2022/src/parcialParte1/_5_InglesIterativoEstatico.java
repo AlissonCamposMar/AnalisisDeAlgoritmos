@@ -1,6 +1,6 @@
 package parcialParte1;
 
-public class InglesIterativoEstatico {
+public class _5_InglesIterativoEstatico {
 
     public static void main(String[] args){
         int [] arr1 = {9,9,9,9,9,9,9,9,9};
