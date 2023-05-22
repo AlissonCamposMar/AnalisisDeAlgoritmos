@@ -15,7 +15,6 @@ public class _5_InglesIterativoEstatico {
                 BigInteger.valueOf(9), BigInteger.valueOf(9),
                 BigInteger.valueOf(9), BigInteger.valueOf(9)};
 
-
         System.out.println("Arreglo multiplicando");
         for(BigInteger l: arr1)
             System.out.print(l + " ");
@@ -34,12 +33,12 @@ public class _5_InglesIterativoEstatico {
         int tam = arreglo1.length + arreglo2.length;
         BigInteger[] resultado = new BigInteger [tam];
 
-        for (int i = 0; i < resultado.length; i++) {
-            resultado[i] = BigInteger.ZERO;
+        for (int x = 0; x < resultado.length; x++) {
+            resultado[x] = BigInteger.ZERO;
         }
 
-        for (int i=0; i< arreglo2.length; i++) {
-            for(int j=0; j< arreglo1.length; j++) {
+        for (int i = 0; i < arreglo2.length; i++) {
+            for(int j = 0; j < arreglo1.length; j++) {
                 resultado[i + j + 1] = resultado[i + j + 1].add(arreglo1[j].multiply(arreglo2[i]));
 
             }
