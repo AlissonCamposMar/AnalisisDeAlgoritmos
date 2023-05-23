@@ -28,7 +28,7 @@ public class _7_InglesRecursivoEstatico {
         multiplicarArreglosInglesRecursivo(arr1, arr2);
     }
 
-    private static BigInteger[] multiplicarArreglosInglesRecursivo(BigInteger[] arreglo1, BigInteger[] arreglo2) {
+    private static void multiplicarArreglosInglesRecursivo(BigInteger[] arreglo1, BigInteger[] arreglo2) {
 
         int tam = arreglo1.length + arreglo2.length;
         BigInteger[] resultado = new BigInteger [tam];
@@ -42,7 +42,6 @@ public class _7_InglesRecursivoEstatico {
 
         multiplicarRecursivo(arreglo1, arreglo2, resultado, i, j, k);
         imprimirResultado(resultado);
-        return resultado;
     }
 
     private static BigInteger[] multiplicarRecursivo(BigInteger[] arreglo1, BigInteger[] arreglo2, BigInteger[] resultado, int i, int j, int k) {

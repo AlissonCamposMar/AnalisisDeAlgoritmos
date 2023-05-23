@@ -32,7 +32,7 @@ public class _3_AmericanoRecursivoEstatico {
     //Este método evita que en la ejecución se desborde
     //Si el valor que hay en el arreglo 1 es mayor al valor del arreglo 2 entonces se intercambian
     //Es utilizado en el método recursivo
-    private static BigInteger[] multiplicarArreglosAmericanoRecursivo(BigInteger[] arr1, BigInteger[] arr2) {
+    private static void multiplicarArreglosAmericanoRecursivo(BigInteger[] arr1, BigInteger[] arr2) {
 
         BigInteger[] resultado = new BigInteger[arr1.length + arr2.length];
 
@@ -53,11 +53,10 @@ public class _3_AmericanoRecursivoEstatico {
 
         multiplicacionAmericanoRecursivo(arr1, arr2, resultado, acarreo, i, j, k);
         imprimirResultado(resultado);
-        return resultado;
 
     }
 
-    public static BigInteger[] multiplicacionAmericanoRecursivo(BigInteger[] arr1, BigInteger[] arr2, BigInteger[] resultado,
+    public static void multiplicacionAmericanoRecursivo(BigInteger[] arr1, BigInteger[] arr2, BigInteger[] resultado,
                                                                 BigInteger acarreo, int i, int j, int k){
 
         if(i==0 && j==0) {
@@ -72,7 +71,7 @@ public class _3_AmericanoRecursivoEstatico {
             k--;
             resultado[k] = acarreo;
             //System.out.println(arr1[j] + "," + arr2[i]);
-            return resultado;
+
 
         } else if (j == 0) {
             //System.out.println(arr1[j] + "," + arr2[i]);
@@ -112,7 +111,6 @@ public class _3_AmericanoRecursivoEstatico {
 
         }
 
-        return resultado;
     }
 
     private static void imprimirResultado(BigInteger[] resultado) {

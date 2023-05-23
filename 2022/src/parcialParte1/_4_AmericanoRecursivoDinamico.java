@@ -37,7 +37,7 @@ public class _4_AmericanoRecursivoDinamico {
         multiplicarArrayListRecursivo(arrayList1, arrayList2);
     }
 
-    private static ArrayList<BigInteger> multiplicarArrayListRecursivo(ArrayList<BigInteger> arrayList1, ArrayList<BigInteger> arrayList2) {
+    private static void multiplicarArrayListRecursivo(ArrayList<BigInteger> arrayList1, ArrayList<BigInteger> arrayList2) {
 
         int longitud = arrayList1.size() + arrayList2.size();
         ArrayList<BigInteger> resultado = new ArrayList<>(Collections.nCopies(longitud, null));
@@ -59,10 +59,9 @@ public class _4_AmericanoRecursivoDinamico {
 
         multiplicacionAmericanoRecursivo(arrayList1, arrayList2, resultado, acarreo, i, j, k);
         imprimirResultado(resultado);
-        return resultado;
     }
 
-    private static ArrayList<BigInteger> multiplicacionAmericanoRecursivo(ArrayList<BigInteger> arrayList1, ArrayList<BigInteger> arrayList2, ArrayList<BigInteger> resultado, BigInteger acarreo, int i, int j, int k) {
+    private static void multiplicacionAmericanoRecursivo(ArrayList<BigInteger> arrayList1, ArrayList<BigInteger> arrayList2, ArrayList<BigInteger> resultado, BigInteger acarreo, int i, int j, int k) {
 
         if(i==0 && j==0) {
             resultado.set(k, resultado.get(k).add(arrayList1.get(j).multiply(arrayList2.get(i))).add(acarreo));
@@ -76,7 +75,6 @@ public class _4_AmericanoRecursivoDinamico {
             k--;
             resultado.set(k, acarreo);
             //System.out.println(arr1[j] + "," + arr2[i]);
-            return resultado;
 
         } else if (j == 0) {
             //System.out.println(arr1[j] + "," + arr2[i]);
@@ -115,8 +113,6 @@ public class _4_AmericanoRecursivoDinamico {
             multiplicacionAmericanoRecursivo(arrayList1,arrayList2,resultado,acarreo,i,j,k);
 
         }
-
-        return resultado;
     }
 
     private static void imprimirResultado(ArrayList<BigInteger> resultado) {

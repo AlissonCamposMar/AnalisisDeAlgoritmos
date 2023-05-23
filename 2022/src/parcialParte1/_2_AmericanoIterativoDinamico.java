@@ -42,7 +42,7 @@ public class _2_AmericanoIterativoDinamico {
     }
 
 
-    public static ArrayList<BigInteger> multiplicarAmericanoArrayList(ArrayList<BigInteger> arr1, ArrayList<BigInteger> arr2){
+    public static void multiplicarAmericanoArrayList(ArrayList<BigInteger> arr1, ArrayList<BigInteger> arr2){
         ArrayList<BigInteger>resultado = new ArrayList<>();
         BigInteger k;
         BigInteger acarreo = BigInteger.ZERO;
@@ -85,7 +85,6 @@ public class _2_AmericanoIterativoDinamico {
             acarreo = BigInteger.ZERO;
         }
         imprimirResultadoArrayList(resultado);
-        return resultado;
     }
 
     private static void imprimirResultadoArrayList(ArrayList<BigInteger> resultado) {

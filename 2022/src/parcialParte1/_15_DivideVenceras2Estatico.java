@@ -51,36 +51,4 @@ public class _15_DivideVenceras2Estatico {
         return new BigInteger[] {a, b};
     }
 
-
-    public static BigInteger readFileToBigInteger(String filePath) {
-        BigInteger result = null;
-        BufferedReader reader = null;
-
-        try {
-            reader = new BufferedReader(new FileReader(filePath));
-            StringBuilder stringBuilder = new StringBuilder();
-            String line = reader.readLine();
-
-            while (line != null) {
-                stringBuilder.append(line);
-                line = reader.readLine();
-            }
-
-            String fileContent = stringBuilder.toString();
-            result = new BigInteger(fileContent);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return result;
-    }
-
 }

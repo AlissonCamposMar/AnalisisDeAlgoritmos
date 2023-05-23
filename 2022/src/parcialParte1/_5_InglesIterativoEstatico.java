@@ -28,7 +28,7 @@ public class _5_InglesIterativoEstatico {
 
     }
 
-    public static BigInteger[] multiplicaInglesa (BigInteger[] arreglo1, BigInteger[] arreglo2) {
+    public static void multiplicaInglesa (BigInteger[] arreglo1, BigInteger[] arreglo2) {
 
         int tam = arreglo1.length + arreglo2.length;
         BigInteger[] resultado = new BigInteger [tam];
@@ -51,7 +51,6 @@ public class _5_InglesIterativoEstatico {
         }
 
         imprimirResultado(resultado);
-        return resultado;
 
     }
 

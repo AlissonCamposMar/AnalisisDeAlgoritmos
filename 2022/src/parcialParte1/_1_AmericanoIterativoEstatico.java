@@ -29,7 +29,7 @@ public class _1_AmericanoIterativoEstatico {
 
     }
 
-    private static BigInteger[] multiplicarAmericano(BigInteger[] arr1, BigInteger[] arr2) {
+    private static void multiplicarAmericano(BigInteger[] arr1, BigInteger[] arr2) {
 
         BigInteger[] resultado = new BigInteger[arr1.length+ arr2.length];
         int k;
@@ -75,7 +75,6 @@ public class _1_AmericanoIterativoEstatico {
             acarreo = BigInteger.ZERO;
         }
         imprimirResultado(resultado);
-        return resultado;
     }
 
     private static void imprimirResultado(BigInteger[] resultado) {

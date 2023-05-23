@@ -44,7 +44,7 @@ public class _8_InglesRecursivoDinamico {
 
     }
 
-    private static ArrayList<BigInteger> multiplicarArrayListAmericanoRecursivo(ArrayList<BigInteger> arrayList1, ArrayList<BigInteger> arrayList2) {
+    private static void multiplicarArrayListAmericanoRecursivo(ArrayList<BigInteger> arrayList1, ArrayList<BigInteger> arrayList2) {
 
         int longitud = arrayList1.size() + arrayList2.size();
         ArrayList<BigInteger> resultado = new ArrayList<>(Collections.nCopies(longitud, null));
@@ -59,7 +59,6 @@ public class _8_InglesRecursivoDinamico {
 
         multiplicarRecursivo(arrayList1, arrayList2, resultado, i, j, k);
         imprimirResultado(resultado);
-        return resultado;
     }
 
     private static ArrayList<BigInteger> multiplicarRecursivo(ArrayList<BigInteger> arrayList1, ArrayList<BigInteger> arrayList2, ArrayList<BigInteger> resultado, int i, int j, int k) {

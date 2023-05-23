@@ -47,35 +47,4 @@ public class _14_DivideVenceras1Estatico {
         return ac.shiftLeft(2 * m).add(abcd.subtract(ac).subtract(bd).shiftLeft(m)).add(bd);
     }
 
-    public static BigInteger readFileToBigInteger(String filePath) {
-        BigInteger result = null;
-        BufferedReader reader = null;
-
-        try {
-            reader = new BufferedReader(new FileReader(filePath));
-            StringBuilder stringBuilder = new StringBuilder();
-            String line = reader.readLine();
-
-            while (line != null) {
-                stringBuilder.append(line);
-                line = reader.readLine();
-            }
-
-            String fileContent = stringBuilder.toString();
-            result = new BigInteger(fileContent);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return result;
-    }
-
 }

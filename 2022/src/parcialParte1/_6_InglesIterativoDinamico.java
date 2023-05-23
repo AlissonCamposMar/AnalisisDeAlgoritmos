@@ -39,7 +39,7 @@ public class _6_InglesIterativoDinamico {
 
     }
 
-    public static ArrayList<BigInteger> multiplicarInglesArrayList (ArrayList<BigInteger> arrayList1, ArrayList<BigInteger> arrayList2) {
+    public static void multiplicarInglesArrayList (ArrayList<BigInteger> arrayList1, ArrayList<BigInteger> arrayList2) {
 
         int longitud = arrayList1.size() + arrayList2.size();
         ArrayList<BigInteger> resultado = new ArrayList<>(Collections.nCopies(longitud, null));
@@ -62,7 +62,6 @@ public class _6_InglesIterativoDinamico {
         }
 
         imprimirResultadoArrayList(resultado);
-        return resultado;
 
     }
 
