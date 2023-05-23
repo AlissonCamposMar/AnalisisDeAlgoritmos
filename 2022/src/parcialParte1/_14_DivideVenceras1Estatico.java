@@ -1,28 +1,31 @@
 package parcialParte1;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.math.BigInteger;
 
 public class _14_DivideVenceras1Estatico {
 
     public static void main(String[] args){
-        BigInteger arr1 = BigInteger.valueOf(9999999);
-        BigInteger arr2 = BigInteger.valueOf(9999999);
+        BigInteger x = new BigInteger("9999999");
+        BigInteger y = new BigInteger("9999999");
 
 
 
         System.out.println();
 
 
-        System.out.println(dv1Multiplicacion(arr1, arr2));
+        System.out.println(dv1Multiplicacion(x, y));
 
     }
 
 
     // ---------------------------- Divide y vencer�s 1 (est�tico) -------------------------
     public static BigInteger dv1Multiplicacion(BigInteger x, BigInteger y) {
+
+        // Verificar si alguno de los números es cero
+        if (x.equals(BigInteger.ZERO) || y.equals(BigInteger.ZERO)) {
+            return BigInteger.ZERO;
+        }
+
         // Verificar si los n�meros tienen un solo d�gito
         if (x.compareTo(BigInteger.TEN) < 0 || y.compareTo(BigInteger.TEN) < 0) {
             return x.multiply(y);
@@ -31,20 +34,27 @@ public class _14_DivideVenceras1Estatico {
         // Obtener el tama�o de los n�meros
         int n = Math.max(x.bitLength(), y.bitLength());
 
+        // Verificar si n es una potencia de dos
+        if (n % 2 != 0) {
+            n++;
+        }
+
         // Dividir los n�meros en dos mitades
         int m = n / 2;
-        BigInteger a = x.shiftRight(m);
-        BigInteger b = x.subtract(a.shiftLeft(m));
-        BigInteger c = y.shiftRight(m);
-        BigInteger d = y.subtract(c.shiftLeft(m));
+        BigInteger powerOfTwo = BigInteger.TWO.pow(m);
+
+        BigInteger a = x.divide(powerOfTwo);
+        BigInteger b = x.mod(powerOfTwo);
+        BigInteger c = y.divide(powerOfTwo);
+        BigInteger d = y.mod(powerOfTwo);
 
         // Calcular las tres multiplicaciones necesarias
         BigInteger ac = dv1Multiplicacion(a, c);
         BigInteger bd = dv1Multiplicacion(b, d);
-        BigInteger abcd = dv1Multiplicacion(a.add(b), c.add(d));
+        BigInteger adPlusBc = dv1Multiplicacion(a.add(b), c.add(d)).subtract(ac).subtract(bd);
 
-        // Calcular el resultado final
-        return ac.shiftLeft(2 * m).add(abcd.subtract(ac).subtract(bd).shiftLeft(m)).add(bd);
+        // Combinar los resultados parciales para obtener el resultado final
+        return ac.multiply(powerOfTwo.pow(2)).add(adPlusBc.multiply(powerOfTwo)).add(bd);
     }
 
 }
