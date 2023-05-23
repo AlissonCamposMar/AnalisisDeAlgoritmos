@@ -26,29 +26,26 @@ public class _15_DivideVenceras2Estatico {
         if (n <= 2000) { // Caso base: n�meros peque�os
             return x.multiply(y);
         }
-        // Dividir x e y en dos partes iguales
-        BigInteger[] partesX = dividirEnPartes(x);
-        BigInteger[] partesY = dividirEnPartes(y);
-        BigInteger a = partesX[0], b = partesX[1];
-        BigInteger c = partesY[0], d = partesY[1];
-        // Calcular los cuatro productos parciales
+
+        // Igualar la cantidad de dígitos a la potencia de dos más cercana
+        n = (n / 2) + (n % 2);
+
+        // Dividir los números en mitades
+        BigInteger tenPowN = BigInteger.TEN.pow(n);
+        BigInteger a = x.divide(tenPowN);
+        BigInteger b = x.mod(tenPowN);
+        BigInteger c = y.divide(tenPowN);
+        BigInteger d = y.mod(tenPowN);
+
+        // Calcular las multiplicaciones intermedias
         BigInteger ac = dv2Multiplicacion(a, c);
         BigInteger bd = dv2Multiplicacion(b, d);
-        BigInteger suma = dv2Multiplicacion(a.add(b), c.add(d));
-        BigInteger adbc = suma.subtract(ac).subtract(bd);
+        BigInteger adPlusBc = dv2Multiplicacion(a.add(b), c.add(d)).subtract(ac).subtract(bd);
+
         // Calcular el resultado final
-        BigInteger resultado = ac.multiply(BigInteger.TEN.pow(2 * n))
-                .add(adbc.multiply(BigInteger.TEN.pow(n)))
-                .add(bd);
-        return resultado;
+        return ac.multiply(tenPowN.pow(2)).add(adPlusBc.multiply(tenPowN)).add(bd);
+
     }
 
-    // Divide un n�mero en dos partes iguales (redondeo hacia abajo)
-    private static BigInteger[] dividirEnPartes(BigInteger x) {
-        int n = x.bitLength() / 2;
-        BigInteger a = x.shiftRight(n);
-        BigInteger b = x.subtract(a.shiftLeft(n));
-        return new BigInteger[] {a, b};
-    }
 
 }
