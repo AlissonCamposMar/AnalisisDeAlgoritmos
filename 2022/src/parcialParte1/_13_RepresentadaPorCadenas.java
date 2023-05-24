@@ -4,30 +4,28 @@ import java.math.BigInteger;
 
 public class _13_RepresentadaPorCadenas {
 
-    public static void main(String[] args){
-        String arr1 = "9999999";
-        String arr2 = "9999999";
+    public static void main(String[] args) {
+        BigInteger[] arr1 = {BigInteger.valueOf(9)};
+        BigInteger[] arr2 = {BigInteger.valueOf(9)};
+
+        String[] arreglo1 = convertBigIntegerToStringArray(arr1);
+        String[] arreglo2 = convertBigIntegerToStringArray(arr2);
 
 
-
-        System.out.println();
-
-
-        System.out.println(conCadenas(arr1, arr2));
-
+        System.out.println(representadaPorCadenas(arreglo1, arreglo2));
     }
 
-    public static BigInteger conCadenas(String num1, String num2) {
-        int n = num1.length();
-        int m = num2.length();
+    public static BigInteger representadaPorCadenas(String[] num1, String[] num2) {
+        int n = num1.length;
+        int m = num2.length;
         int[] product = new int[n + m];
 
         for (int i = n - 1; i >= 0; i--) {
             int carry = 0;
-            int digit1 = num1.charAt(i) - '0';
+            int digit1 = Integer.parseInt(num1[i]);
 
             for (int j = m - 1; j >= 0; j--) {
-                int digit2 = num2.charAt(j) - '0';
+                int digit2 = Integer.parseInt(num2[j]);
                 int temp = digit1 * digit2 + product[i + j + 1] + carry;
                 product[i + j + 1] = temp % 10;
                 carry = temp / 10;
@@ -47,5 +45,15 @@ public class _13_RepresentadaPorCadenas {
         }
 
         return new BigInteger(sb.toString());
+    }
+
+    public static String[] convertBigIntegerToStringArray(BigInteger[] bigIntegers) {
+        String[] strings = new String[bigIntegers.length];
+
+        for (int i = 0; i < bigIntegers.length; i++) {
+            strings[i] = bigIntegers[i].toString();
+        }
+
+        return strings;
     }
 }

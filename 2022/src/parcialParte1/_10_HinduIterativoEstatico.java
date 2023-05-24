@@ -2,15 +2,18 @@ package parcialParte1;
 
 
 import java.math.BigInteger;
+import java.util.Random;
 
 public class _10_HinduIterativoEstatico {
 
     public static void main(String[] args){
+        //BigInteger[] arr1 = generateRandomBigIntegerArray(9);
         BigInteger[] arr1 = {BigInteger.valueOf(9),
                 BigInteger.valueOf(9), BigInteger.valueOf(9),
                 BigInteger.valueOf(9), BigInteger.valueOf(9),
                 BigInteger.valueOf(9), BigInteger.valueOf(9)};
 
+        //BigInteger[] arr2 = generateRandomBigIntegerArray(9);
         BigInteger[] arr2 = {BigInteger.valueOf(9),
                 BigInteger.valueOf(9), BigInteger.valueOf(9),
                 BigInteger.valueOf(9), BigInteger.valueOf(9),
@@ -90,6 +93,24 @@ public class _10_HinduIterativoEstatico {
         for (int i = 0; i< resultado.length; i++){
             System.out.print(resultado[i] + " ");
         }
+    }
+
+    public static BigInteger[] generateRandomBigIntegerArray(int rows) {
+        // Create a new one-dimensional array of BigInteger objects of size rows x columns.
+        BigInteger[] array = new BigInteger[rows];
+
+        // Create a new Random object to generate random values.
+        Random random = new Random();
+
+        // Iterate over each element of the array and assign a random BigInteger value between 1000 and 9000.
+        for (int i = 0; i < rows; i++) {
+                BigInteger value = BigInteger.valueOf(random.nextInt(8001) + 1000);
+                array[i] = value;
+
+        }
+
+        // Return the array with random values.
+        return array;
     }
 
 
