@@ -1,32 +1,31 @@
 package parcialParte1;
 
 import java.math.BigInteger;
+import java.util.Arrays;
 
 public class _12_KaratsubaEstatico {
 
     public static void main(String[] args){
-        BigInteger arr1 = BigInteger.valueOf(9999999);
-        BigInteger arr2 = BigInteger.valueOf(9999999);
+        BigInteger[] arr1 = {BigInteger.valueOf(9999999)};
+        BigInteger[] arr2 = {BigInteger.valueOf(9999999)};
 
 
 
         System.out.println();
 
 
-        System.out.println(karatsuba(arr1, arr2));
+        BigInteger[] result = karatsubaEstatico(arr1, arr2);
+        for (BigInteger num : result) {
+            System.out.println(num);
+        }
 
     }
-    /**
-     * Función para multiplicar dos números por el método Karatsuba
-     * @param u multiplicando
-     * @param v multiplicador
-     * @return resultado multiplicación
-     */
-    public static BigInteger karatsuba(BigInteger u, BigInteger v) {
-        int posiciones = Math.max(u.bitLength(), v.bitLength());
-        //Para n menor que mil, es más eficiente la multiplicación normal.
+
+    public static BigInteger[] karatsubaEstatico(BigInteger[] num1, BigInteger[] num2) {
+        int posiciones = Math.max(num1.length, num2.length);
+        // Para n menor que mil, es más eficiente la multiplicación normal.
         if (posiciones <= 1000) {
-            return u.multiply(v);
+            return multiplyArrays(num1, num2);
         }
         posiciones = posiciones / 2;
         /*
@@ -34,18 +33,78 @@ public class _12_KaratsubaEstatico {
          * u = w * 2^n + x
          * v = y * 2^n + z
          */
-        BigInteger w = u.shiftRight(posiciones);
-        BigInteger x = u.subtract(w.shiftLeft(posiciones));
-        BigInteger y = v.shiftRight(posiciones);
-        BigInteger z = v.subtract(y.shiftLeft(posiciones));
+        BigInteger[] w = new BigInteger[num1.length - posiciones];
+        BigInteger[] x = new BigInteger[posiciones];
+        System.arraycopy(num1, 0, w, 0, w.length);
+        System.arraycopy(num1, w.length, x, 0, x.length);
+
+        BigInteger[] y = new BigInteger[num2.length - posiciones];
+        BigInteger[] z = new BigInteger[posiciones];
+        System.arraycopy(num2, 0, y, 0, y.length);
+        System.arraycopy(num2, y.length, z, 0, z.length);
+
         // Calculamos los resultados parciales
-        BigInteger p = karatsuba(w, y); //p=w*y
-        BigInteger q = karatsuba(x, z); //q=x*z
-        BigInteger r = karatsuba(x.add(w), z.add(y)); //r=(x+w)*(z+y)
-        BigInteger z1 = r.subtract(p).subtract(q); //r-p-q
+        BigInteger[] p = karatsubaEstatico(w, y); // p = w * y
+        BigInteger[] q = karatsubaEstatico(x, z); // q = x * z
+        BigInteger[] r = karatsubaEstatico(addArrays(x, w), addArrays(z, y)); // r = (x + w) * (z + y)
+        BigInteger[] z1 = subtractArrays(subtractArrays(r, p), q); // z1 = r - p - q
+
         // Se juntan los resultados parciales para obtener el resultado global.
-        return p.shiftLeft(2 * posiciones).add(z1.shiftLeft(posiciones)).add(q);
+        return addArrays(addArrays(shiftLeft(p, 2 * posiciones), shiftLeft(z1, posiciones)), q);
     }
+
+    // Helper method to multiply two arrays of BigIntegers
+    public static BigInteger[] multiplyArrays(BigInteger[] arr1, BigInteger[] arr2) {
+        int resultLength = arr1.length + arr2.length - 1;
+        BigInteger[] result = new BigInteger[resultLength];
+        Arrays.fill(result, BigInteger.ZERO);
+
+        for (int i = 0; i < arr1.length; i++) {
+            for (int j = 0; j < arr2.length; j++) {
+                result[i + j] = result[i + j].add(arr1[i].multiply(arr2[j]));
+            }
+        }
+
+        return result;
+    }
+
+    // Helper method to add two arrays element-wise
+    public static BigInteger[] addArrays(BigInteger[] arr1, BigInteger[] arr2) {
+        BigInteger[] result = new BigInteger[Math.max(arr1.length, arr2.length)];
+        for (int i = 0; i < result.length; i++) {
+            if (i < arr1.length && i < arr2.length) {
+                result[i] = arr1[i].add(arr2[i]);
+            } else if (i < arr1.length) {
+                result[i] = arr1[i];
+            } else {
+                result[i] = arr2[i];
+            }
+        }
+        return result;
+    }
+
+    // Helper method to subtract two arrays element-wise
+    public static BigInteger[] subtractArrays(BigInteger[] arr1, BigInteger[] arr2) {
+        BigInteger[] result = new BigInteger[Math.max(arr1.length, arr2.length)];
+        for (int i = 0; i < result.length; i++) {
+            if (i < arr1.length && i < arr2.length) {
+                result[i] = arr1[i].subtract(arr2[i]);
+            } else if (i < arr1.length) {
+                result[i] = arr1[i];
+            } else {
+                result[i] = arr2[i].negate();
+            }
+        }
+        return result;
+    }
+
+    // Helper method to shift an array of BigIntegers to the left by n positions
+    public static BigInteger[] shiftLeft(BigInteger[] arr, int n) {
+        BigInteger[] result = new BigInteger[arr.length + n];
+        System.arraycopy(arr, 0, result, n, arr.length);
+        return result;
+    }
+
 
 }
 
