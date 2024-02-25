@@ -16,5 +16,8 @@ build/
 *.iml
 *.ipr
 *.iws
-.idea/
+.idea
+2022.iml
+2023.iml
+/out
 /bin
